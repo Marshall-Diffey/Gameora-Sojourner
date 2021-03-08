@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Topic = sequelize.define('Topic', {
     type: {
-      type: Sequelize.STRING(20),
+      type: DataTypes.STRING(20),
       allowNull: false
     }
   }, {});

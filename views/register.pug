@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    if errors
+        div
+            ul 
+                each error in errors
+                    li= error
+
+
+    form(action='/register' method='post')
+        input(name='_csrf' type='hidden' value=csrfToken)
+        label(for='userName') User Name
+        input(name='userName' type='text' required)
+        label(for='email') Email
+        input(name='email' type='text' required)
+        label(for='password') Password
+        input(name='password' type='password' required)
+        label(for='confirmPassword') Confirm Password
+        input(name='confirmPassword' type='password' required)
+        button(type='submit') Register
+        
