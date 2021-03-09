@@ -55,7 +55,6 @@ router.get('/login', csrfProtection, (req, res, next) => {
 
     res.render('login', { title: 'Log In', csrfToken: req.csrfToken() })
 
-
 });
 
 const loginValidators = [
