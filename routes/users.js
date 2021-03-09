@@ -35,7 +35,7 @@ router.post('/register', csrfProtection, registrationsValidations, asyncHandler(
         newUser.hashedPassword = hashedPassword
         await newUser.save();
         loginUser(req, res, newUser)
-        return await req.session.save(() => {
+        return req.session.save(() => {
             res.redirect('/')
         })
     } else {
@@ -81,7 +81,7 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
             const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString())
             if (passwordMatch) {
                 loginUser(req, res, user)
-                req.session.save(() => {
+                return req.session.save(() => {
 
                     res.redirect('/')
                 })
@@ -104,7 +104,7 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
 
 router.post('/logout', (req, res) => {
     logOutUser(req, res)
-    req.session.save(() => {
+    return req.session.save(() => {
         res.redirect('/')
     })
 
