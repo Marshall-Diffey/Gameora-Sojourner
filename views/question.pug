@@ -7,6 +7,6 @@ block content
         each comment in comments
             div=comment.body
         form(method='post' action='/comments')
-        input(name='_csrf' type='hidden' value=csrfToken)
-        textarea(id='newComment' name='newComment' placeholder='Add comment here')
-        button(type='submit') Add Comment
+            input(name='_csrf' type='hidden' value=csrfToken)
+            textarea(id='newComment' name='newComment' placeholder='Add comment here')
+            button(type='submit') Add Comment
