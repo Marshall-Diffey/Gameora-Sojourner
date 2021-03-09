@@ -13,44 +13,7 @@ const loginUser = require('../auth')
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Game-Ora Home' });
 });
-router.get('/register', csrfProtection, (req, res) => {
-  //const newUser = user.build()
 
-  res.render('register', { csrfToken: req.csrfToken(), title: 'Register' })
-
-})
-router.post('/register', csrfProtection, registrationsValidations, asyncHandler(async (req, res) => {
-  const {
-    userName,
-    email,
-    password
-  } = req.body
-
-  const newUser = user.build({
-    userName,
-    email,
-    password
-  })
-
-  const validatorErrors = validationResult(req)
-
-  if (validatorErrors.isEmpty()) {
-    const hashedPassword = await bcrypt.hash(password, 10)
-    newUser.hashedPassword = hashedPassword
-    await newUser.save();
-    loginUser(req, res, newUser)
-    return res.redirect('/')
-  } else {
-    const errors = validatorErrors.array().map(error => error.msg)
-    console.log(errors)
-    res.render('register', {
-      title: 'Register',
-      errors,
-      newUser,
-      csrfToken: req.csrfToken()
-    })
-  }
-}))
 
 
 
