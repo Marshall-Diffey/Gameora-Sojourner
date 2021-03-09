@@ -35,7 +35,9 @@ router.post('/register', csrfProtection, registrationsValidations, asyncHandler(
         newUser.hashedPassword = hashedPassword
         await newUser.save();
         loginUser(req, res, newUser)
-        return res.redirect('/')
+        return await req.session.save(() => {
+            res.redirect('/')
+        })
     } else {
         const errors = validatorErrors.array().map(error => error.msg)
         console.log(errors)
@@ -99,7 +101,10 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
 
 router.post('/logout', (req, res) => {
     logOutUser(req, res)
-    return res.redirect('/')
+    req.session.save(() => {
+        res.redirect('/')
+    })
+
 })
 
 module.exports = router
