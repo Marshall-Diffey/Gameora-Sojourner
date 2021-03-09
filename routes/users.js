@@ -5,7 +5,7 @@ const db = require('../db/models')
 const { validationResult, check } = require('express-validator')
 const registrationsValidations = require('./registerValidations')
 const bcrypt = require('bcryptjs')
-const loginUser = require('../auth')
+const { loginUser, logOutUser } = require('../auth')
 
 
 
@@ -96,5 +96,10 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
 
 
 }));
+
+router.post('/logout', (req, res) => {
+    logOutUser(req, res)
+    return res.redirect('/')
+})
 
 module.exports = router

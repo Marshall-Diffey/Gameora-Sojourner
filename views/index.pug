@@ -7,5 +7,17 @@ append head
     script(src="/javascripts/index.js" type="module" defer)
 
 block content
+
+  if authenticated
+     div Welcome #{user.userName} 
+     form(action="/users/logout" method="post")
+      button(type="submit") Logout
+  else
+    button
+      a(href="/users/login") Login
+    button
+      a(href="/users/register") Register
+
   h1= title
   p Welcome to The Game-Ora Homepage
+  
