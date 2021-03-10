@@ -10,12 +10,13 @@ append head
 block content
   h1= title
   p Welcome to The Game-Ora Homepage
-  
-  span(class="question-container")
-    each question in questions
-      div(class="single-question-container")
-        label(for="question" class="question-label")= question.title
-        div(name="question")= question.body
-  span(class="topic-container")
-    each topic in topics
-      a(href="/topic/#{topic.id}")=topic.type
+  div(class="page-container")
+    span(class="placeholder")
+    span(class="question-container")
+      each question in questions
+        div(class="single-question-container")
+          label(for="question" class="question-label") Title: #{question.title}
+          div(name="question")= question.body
+    span(class="topic-container")
+      each topic in topics
+        a(href="/topic/#{topic.id}")=topic.type

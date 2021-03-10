@@ -13,7 +13,7 @@ const loginUser = require('../auth')
 router.get('/', asyncHandler(async (req, res, next) => {
   const questions = await db.Question.findAll({}).map(question => question.dataValues)
   const topics = await db.Topic.findAll({}).map(topic => topic.dataValues)
-
+  console.log(topics)
 
   res.render('index', { title: 'Game-Ora Home', questions, topics });
 }));
