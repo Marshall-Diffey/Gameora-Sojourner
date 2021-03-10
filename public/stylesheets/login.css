@@ -1,0 +1,21 @@
+body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+    background-color: lightblue;
+}
+.logo{
+    width:500px;
+    
+}
+.login-container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width: 500px;
+    
+}
+.controler{
+    width:100px;
+}

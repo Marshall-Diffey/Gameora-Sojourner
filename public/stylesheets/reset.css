@@ -25,3 +25,31 @@ body, header, nav {
 h1 {
   font-size: 2rem;
 }
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid;
+  padding: 5px;
+  
+}
+#logo {
+  height: 25px;
+  margin-top:10px;
+}
+.navButton {
+  height:25px;
+  border-radius: 10%;
+ 
+}
+.left-navBar {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  
+}
+.right-navBar {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  
+}

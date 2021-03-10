@@ -4,4 +4,20 @@ html
     title=title
     link(rel='stylesheet' href='/stylesheets/reset.css')
   body
-    block content
+    nav#navbar
+      span.left-navBar
+        img#logo(src="/images/logo.png")
+        a.navButton(href='/') 🏠
+      span.right-navBar
+        button.navButton
+          a(href='/questions') Create a new question
+        if authenticated
+          form(action="/users/logout" method="post")
+            button.navButton(type="submit") Logout
+          div.navButton Welcome #{user.userName}
+        else
+          button
+            a(href="/users/login") Login
+          button
+            a(href="/users/register") Register
+  block content
