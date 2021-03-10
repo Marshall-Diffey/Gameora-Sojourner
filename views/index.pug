@@ -8,8 +8,14 @@ append head
     script(src="/javascripts/index.js" type="module" defer)
 
 block content
-
- 
-
   h1= title
   p Welcome to The Game-Ora Homepage
+  
+  span(class="question-container")
+    each question in questions
+      div(class="single-question-container")
+        label(for="question" class="question-label")= question.title
+        div(name="question")= question.body
+  span(class="topic-container")
+    each topic in topics
+      a(href="/topic/#{topic.id}")=topic.type

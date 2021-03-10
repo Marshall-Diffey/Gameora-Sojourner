@@ -1,3 +1,17 @@
 h1 {
     color: #555555;
 }
+
+body{
+    background-color:lightblue;
+    display: flex;
+    flex-direction: column;
+    
+}
+.single-question-container {
+    border: 1px solid;
+    width: 600px;
+}
+.question-label {
+    border: 1px solid
+}

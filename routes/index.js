@@ -10,10 +10,14 @@ const loginUser = require('../auth')
 
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', asyncHandler(async (req, res, next) => {
+  const questions = await db.Question.findAll({}).map(question => question.dataValues)
+  const topics = await db.Topic.findAll({}).map(topic => topic.dataValues)
 
-  res.render('index', { title: 'Game-Ora Home' });
-});
+
+  res.render('index', { title: 'Game-Ora Home', questions, topics });
+}));
+
 
 
 
