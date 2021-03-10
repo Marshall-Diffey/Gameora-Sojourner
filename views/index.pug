@@ -8,16 +8,15 @@ append head
     script(src="/javascripts/index.js" type="module" defer)
 
 block content
-
-  if authenticated
-     div Welcome #{user.userName}
-     form(action="/users/logout" method="post")
-      button(type="submit") Logout
-  else
-    button
-      a(href="/users/login") Login
-    button
-      a(href="/users/register") Register
-
   h1= title
   p Welcome to The Game-Ora Homepage
+  div(class="page-container")
+    span(class="placeholder")
+    span(class="question-container")
+      each question in questions
+        div(class="single-question-container")
+          label(for="question" class="question-label") Title: #{question.title}
+          div(name="question")= question.body
+    span(class="topic-container")
+      each topic in topics
+        a(href="/topic/#{topic.id}")=topic.type

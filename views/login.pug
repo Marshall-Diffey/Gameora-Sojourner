@@ -1,17 +1,32 @@
-extends layout
-
-block content
-    include error.pug
-    form(action='/users/login' method='post')
-        input(name='_csrf' type='hidden' value=csrfToken)
-        label(for='email') Email
-        input(name='email' type='text' required)
-        label(for='password') Password
-        input(name='password' type='password' required)
-        button(type='submit') Login
-
-    p If you do not have an account click the button below to register
-    button
-        a(href='/users/register') Register
-    if needLogin
-        p You need to be logged in to access this functionality
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel='stylesheet' href='/stylesheets/login.css')
+        title Document
+    body 
+        div(class="login")
+            img(src='/images/logo.png' class='logo')
+            div(class='login-container')
+                span
+                    a(href='/') 🏠
+                include error.pug
+                
+                form(action='/users/login' method='post')
+                   
+                        input(name='_csrf' type='hidden' value=csrfToken)
+                        label(for='email') Email
+                        input(name='email' type='text' required)
+                        label(for='password') Password
+                        input(name='password' type='password' required)
+                        button(type='submit') Login
+            
+                p(class='p-register') If you do not have an account click the button below to register
+                    
+                a(href='/users/register') 
+                    img(src="/images/controler.jpg" class='controler')
+                if needLogin
+                    p You need to be logged in to access this functionality
+        

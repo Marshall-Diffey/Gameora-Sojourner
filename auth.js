@@ -35,7 +35,7 @@ const logOutUser = (req, res) => {
 const requireAuth = (req, res, next) => {
     if (!res.locals.authenticated) {
         needLogin = true;
-        return res.render('login', {title: 'Login', csrfToken: req.csrfToken(), needLogin});
+       return res.render('login', {title: 'Login', csrfToken: req.csrfToken(), needLogin});
     }
     return next();
 }
