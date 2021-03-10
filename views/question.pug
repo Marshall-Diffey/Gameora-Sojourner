@@ -1,10 +1,13 @@
 extends layout
 
 block content
-    body
+  
+    div(id='comment-div')
         div
             span=title
             div=question.body
+              if (userId === question.userId)
+                button(class="delete-button" value=question.id) Delete
         each comment in comments
             div=comment.body
         form(method='post' action='/comments')
