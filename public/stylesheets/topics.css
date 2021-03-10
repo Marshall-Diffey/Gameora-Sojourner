@@ -1,0 +1,28 @@
+body {
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+}
+.placeholder {
+  height: 600px;
+  width: 600px;
+}
+.page-container {
+  display: flex;
+  flex-direction: row;
+}
+.single-question-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border: 1px solid;
+  width: 600px;
+  box-shadow: 10px 5px 5px grey;
+  margin-right: 300px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+.question-label {
+  background-color: lightgrey;
+  border-radius: 5px;
+}
