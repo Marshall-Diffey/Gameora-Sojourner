@@ -1,0 +1,17 @@
+extends layout
+
+append head
+    //- add page specific styles by appending to the head
+    title=title
+    link(rel="stylesheet" href="/stylesheets/topics.css")
+    //- add page specific js
+    script(src="/javascripts/index.js" type="module" defer)
+
+block content
+    div(class="page-container")
+        span(class="placeholder")
+        span(class="question-container")
+          each question in questions
+            div(class="single-question-container")
+              label(for="question" class="question-label") Title: #{question.title}
+              div(name="question")= question.body
