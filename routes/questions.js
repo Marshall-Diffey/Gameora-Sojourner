@@ -33,26 +33,30 @@ const questionValidations = [
 
 ]
 
- router.post('/',async (req, res) => {
-     
-    const {
-        title,
-        topic,
-        body,
-    } = req.body;
-
+ router.post('/', async (req, res) => {
+     const {
+         title,
+         topics, //this references pug value attribute "topic.id"
+         body,
+        } = req.body;
+        
+        const topic = await db.Topic.findByPk(topics) //finding topic object
+        const { userId } = req.session.auth
+      
     const newQuestion = db.Question.build({
         title,
-        topic,
-        body
+        topicId: topic.id,
+        body,
+        userId
     });
     const validatorErrors = validationResult(req);
 
       if (validatorErrors.isEmpty()) {
-          console.log('here')
+
           await newQuestion.save();
-          return res.redirect('/')
-            
+           return req.session.save(() => {
+               res.redirect('/')
+           })
       } else {
           const errors = validatorErrors.array().map(error => error.msg)
          return res.render('questions', {
