@@ -12,7 +12,7 @@ const { requireAuth } = require('../auth')
 
 router.get('/', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
     const topics = await db.Topic.findAll();
-    console.log('cheese');
+
     
     res.render('new-question', {
         csrfToken: req.csrfToken(),
@@ -21,7 +21,49 @@ router.get('/', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
     })
 }));
 
-// router.post('/',)
+const questionValidations = [
+    check('title')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a value for the Title')
+      .isLength({ max: 40 })
+      .withMessage('Title cannot exceed 40 characters'),
+    check('body')
+     .exists({ checkFalsy: true })
+     .withMessage('Please provide a value for the question')
+
+]
+
+ router.post('/',async (req, res) => {
+     
+    const {
+        title,
+        topic,
+        body,
+    } = req.body;
+
+    const newQuestion = db.Question.build({
+        title,
+        topic,
+        body
+    });
+    const validatorErrors = validationResult(req);
+
+      if (validatorErrors.isEmpty()) {
+          console.log('here')
+          await newQuestion.save();
+          return res.redirect('/')
+            
+      } else {
+          const errors = validatorErrors.array().map(error => error.msg)
+         return res.render('questions', {
+              title: 'New Question',
+              topic,
+              body,
+              csrfToken: req.csrfToken()
+          })
+      }
+
+ });
 // router.get('/:id',
 // router.delete('/:id',)
 
