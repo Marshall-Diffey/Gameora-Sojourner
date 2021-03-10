@@ -1,17 +1,25 @@
-extends layout
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+    body 
+        span
+            button
+                a(href='/') Home 
+        include error.pug
+        form(action='/users/login' method='post')
+            input(name='_csrf' type='hidden' value=csrfToken)
+            label(for='email') Email
+            input(name='email' type='text' required)
+            label(for='password') Password
+            input(name='password' type='password' required)
+            button(type='submit') Login
 
-block content
-    include error.pug
-    form(action='/users/login' method='post')
-        input(name='_csrf' type='hidden' value=csrfToken)
-        label(for='email') Email
-        input(name='email' type='text' required)
-        label(for='password') Password
-        input(name='password' type='password' required)
-        button(type='submit') Login
-
-    p If you do not have an account click the button below to register
-    button
-        a(href='/users/register') Register
-    if needLogin
-        p You need to be logged in to access this functionality
+        p If you do not have an account click the button below to register
+        button
+            a(href='/users/register') Register
+        if needLogin
+            p You need to be logged in to access this functionality
