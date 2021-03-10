@@ -9,10 +9,9 @@ const { validationResult, check } = require('express-validator')
 const registrationsValidations = require('./registerValidations')
 const { requireAuth } = require('../auth')
 
-
+// this route displays a new question form that users can fill out to submit and create a new question
 router.get('/', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
     const topics = await db.Topic.findAll();
-
 
     res.render('new-question', {
         csrfToken: req.csrfToken(),
@@ -43,6 +42,7 @@ const questionValidations = [
 ];
 
 // route below this line was causing unhandled promise error
+// this route adds a question to the database and redirects to '/' after a fills out the question form and clicks the submit button
  router.post('/', csrfProtection, requireAuth, questionValidations, asyncHandler(async (req, res) => {
      const {
          title,
@@ -78,7 +78,7 @@ const questionValidations = [
           })
       }
  }));
-
+// this route should display a specific question and its comments when a question is clicked
  router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     const questionId = parseInt(req.params.id, 10);
     const question = await db.Question.findByPk(questionId); //{include: ['userId', 'topicId']}
@@ -99,7 +99,16 @@ const questionValidations = [
     })
  }))
 
-// router.delete('/:id',)
+//  router.delete('/:id(\\d+)', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
+//     const questionId = parseInt(req.params.id, 10);
+//     const question = await db.Question.findByPk(questionId);
+//     if (question === null) {
+//         return;
+//     }
+//     await question.destroy();
+//  }))
 
+// router.delete('/:id',)
+// router.put('/:id',) bonus route if we have time to implement question editing
 
 module.exports = router;
