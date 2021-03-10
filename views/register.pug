@@ -4,24 +4,25 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel='stylesheet' href='/stylesheets/register.css')
         title Document
     body
-        span
-            button
-                a(href='/') Home 
     include error.pug
-        form(action='/users/register' method='post')
-            input(name='_csrf' type='hidden' value=csrfToken)
-            label(for='userName') User Name
-            input(name='userName' type='text' required)
-            label(for='email') Email
-            input(name='email' type='text' required)
-            label(for='password') Password
-            input(name='password' type='password' required)
-            label(for='confirmPassword') Confirm Password
-            input(name='confirmPassword' type='password' required)
-            button(type='submit') Register
-            
-        p If you already have an account click the button below to login
-        button 
-            a(href='/users/login') Login
+        div(class="register-container")
+            img(src='/images/logo.jpg' class='logo')
+            a(href='/') 🏠
+            form(action='/users/register' method='post')
+                input(name='_csrf' type='hidden' value=csrfToken)
+                label(for='userName') User Name
+                input(name='userName' type='text' required)
+                label(for='email') Email
+                input(name='email' type='text' required)
+                label(for='password') Password
+                input(name='password' type='password' required)
+                label(for='confirmPassword') Confirm Password
+                input(name='confirmPassword' type='password' required)
+                button(type='submit') Register
+                
+            p If you already have an account click the button below to login
+            button 
+                a(href='/users/login') Login
