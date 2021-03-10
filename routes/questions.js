@@ -79,17 +79,26 @@ const questionValidations = [
       }
  }));
 
- router.get('/:id(\\d+)', asyncHandler(async(req, res) => {
+ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     const questionId = parseInt(req.params.id, 10);
-    const currentQuestion = await db.Question.findByPk(questionId);
-    if(currentQuestion) {
-        return res.render('question', {
-            title,
-        })
+    const question = await db.Question.findByPk(questionId); //{include: ['userId', 'topicId']}
+    const comments = await db.Comment.findAll({where: {questionId}})
+    //console.log(question);
+    if(question === null) {
+        //const error = new Error(''); possibly res.send an error instead of redirecting
+        console.log(';lkajsdf')
+        return res.redirect('/'); // would like to send error message or error in pug file in case of question being deleted mid get request
     }
-    return res.redirect
+    const {title} = question;
+    console.log('a;lksjdfl;kajsdfl;');
+    return res.render('question', {
+        title,
+        comments,
+        question,
+        csrfToken: req.csrfToken()
+    })
  }))
-// router.get('/:id',
+
 // router.delete('/:id',)
 
 
