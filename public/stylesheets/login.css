@@ -7,7 +7,7 @@ body{
 }
 .logo{
     width:500px;
-    box-shadow: 5px 5px 5px .5px lightcoral;
+    
 }
 .login-container{
     display:flex;
