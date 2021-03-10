@@ -1,11 +1,12 @@
 extends layout
 
 block content
+    include error.pug
     form(method='post' action='/questions')
         input(name='_csrf' type='hidden' value=csrfToken)
         label(for='title') Title
         input(id='title' name='title' type='text' required)
-        textarea(id='content' name='content' required)
+        textarea(id='content' name='body' required)
         label(for='topics') Topic
         select(id='topics' name='topics' required)
             each topic in topics
