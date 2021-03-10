@@ -1,9 +1,10 @@
 extends layout
 
 block content
-    div
-        p=title
-        div=question.body
+    body
+        div
+            span=title
+            div=question.body
         each comment in comments
             div=comment.body
         form(method='post' action='/comments')
