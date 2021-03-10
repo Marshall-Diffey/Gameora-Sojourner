@@ -13,7 +13,7 @@ const { requireAuth } = require('../auth')
 router.get('/', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
     const topics = await db.Topic.findAll();
 
-    
+
     res.render('new-question', {
         csrfToken: req.csrfToken(),
         topics,
@@ -28,21 +28,32 @@ const questionValidations = [
       .isLength({ max: 40 })
       .withMessage('Title cannot exceed 40 characters'),
     check('body')
-     .exists({ checkFalsy: true })
-     .withMessage('Please provide a value for the question')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a value for the question'),
+    check('topics')
+      .custom((value) => {
+          const realTopic = db.Topic.findAll({
+              where: {
+                topicId: value
+          }})
+          if (!realTopic.length) {
+              throw new Error('Quit trolling, mate');
+          }
+          return true;
+      })
+
 
 ]
 
- router.post('/', async (req, res) => {
+ router.post('/', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
      const {
          title,
          topics, //this references pug value attribute "topic.id"
          body,
         } = req.body;
-        
         const topic = await db.Topic.findByPk(topics) //finding topic object
         const { userId } = req.session.auth
-      
+
     const newQuestion = db.Question.build({
         title,
         topicId: topic.id,
@@ -63,11 +74,11 @@ const questionValidations = [
               title: 'New Question',
               topic,
               body,
-              csrfToken: req.csrfToken()
+              csrfToken: req.csrfToken(),
+              errors
           })
       }
-
- });
+ }));
 // router.get('/:id',
 // router.delete('/:id',)
 

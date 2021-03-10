@@ -1,6 +1,7 @@
 extends layout
 
 block content
+    include error.pug
     form(method='post' action='/questions')
         input(name='_csrf' type='hidden' value=csrfToken)
         label(for='title') Title
