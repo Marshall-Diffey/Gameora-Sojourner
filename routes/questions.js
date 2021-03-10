@@ -83,6 +83,8 @@ const questionValidations = [
     const questionId = parseInt(req.params.id, 10);
     const question = await db.Question.findByPk(questionId); //{include: ['userId', 'topicId']}
     const comments = await db.Comment.findAll({where: {questionId}})
+ 
+     
     //console.log(question);
     if(question === null) {
         //const error = new Error(''); possibly res.send an error instead of redirecting
@@ -90,23 +92,28 @@ const questionValidations = [
         return res.redirect('/'); // would like to send error message or error in pug file in case of question being deleted mid get request
     }
     const {title} = question;
-    console.log('a;lksjdfl;kajsdfl;');
+     if (req.session.auth) {
+         var { userId } = req.session.auth //USING VAR BRO
+     }
     return res.render('question', {
         title,
         comments,
         question,
-        csrfToken: req.csrfToken()
+        csrfToken: req.csrfToken(),
+        userId
     })
  }))
 
-//  router.delete('/:id(\\d+)', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
-//     const questionId = parseInt(req.params.id, 10);
-//     const question = await db.Question.findByPk(questionId);
-//     if (question === null) {
-//         return;
-//     }
-//     await question.destroy();
-//  }))
+ router.delete('/:id(\\d+)', requireAuth, asyncHandler(async(req, res) => {
+    const questionId = parseInt(req.params.id, 10);
+    const question = await db.Question.findByPk(questionId);
+    if (question === null) {
+        return res.redirect('/');
+    }
+    return await question.destroy({
+        where: { id: questionId }
+    }).end()
+ }))
 
 // router.delete('/:id',)
 // router.put('/:id',) bonus route if we have time to implement question editing
