@@ -9,15 +9,16 @@ append head
     script(src="/javascripts/homeClick.js" type="module")
 
 block content
-  h1= title
-  p Welcome to The Game-Ora Homepage
+  div(class="img-container")
+    img(src="/images/logo.png" class="game-ora-pic")
+  span(class="topic-container")
+      each topic in topics
+        a(href=`/topics/${topic.id}` class="topic-buttons")=topic.type
   div(class="page-container")
     span(class="placeholder")
-    span(class="question-container")
+    div(class="question-container" name="question-container")
       each question in questions
         div(id='questionDiv' class="single-question-container")
-          label(for="question" class="question-label") Title: #{question.title}
-          div(name="question" id=question.id)= question.body
-    span(class="topic-container")
-      each topic in topics
-        a(href=`/topics/${topic.id}`)=topic.type
+          label(for="question" class="question-label") Question: #{question.title}
+          div(name="question" id=question.id class="jebhadtodoit")= question.body
+    

@@ -3,9 +3,13 @@ window.addEventListener('DOMContentLoaded', event => {
 
 
     homeDivs.forEach(question => question.addEventListener('click', event => {
-        console.log(event.target.id)
+      
         window.location.href = `/questions/${event.target.id}`
     }))
 
-
+    const homeDivTitle = document.getElementsByName("question-container")
+    
+    homeDivTitle.forEach(questionz => questionz.addEventListener('click', event => {
+        window.location.href = `/questions/${event.target.id}`
+    }))
 })
