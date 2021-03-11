@@ -16,3 +16,4 @@ deleteButtons.forEach((button) => button.addEventListener('click', async (event)
         window.location.href='/'
     }, 3000)
 }))
+

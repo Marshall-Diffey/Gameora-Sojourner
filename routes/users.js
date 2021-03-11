@@ -66,6 +66,17 @@ const loginValidators = [
         .withMessage('Please provide a value for Password'),
 ];
 
+router.post('/logindemo', asyncHandler(async (req, res) => {
+     const email = 'demo@gmail.com'
+     const user = await db.User.findOne({
+         where: { email }
+     })
+    loginUser(req, res, user)
+     res.redirect('/')
+    
+}))
+
+
 router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, res, next) => {
 
     const { email, password } = req.body
@@ -76,6 +87,7 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
         const user = await db.User.findOne({
             where: { email }
         })
+        console.log(user)
         if (user !== null) {
             const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString())
             if (passwordMatch) {
