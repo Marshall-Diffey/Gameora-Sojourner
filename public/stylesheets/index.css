@@ -38,9 +38,7 @@ background-size: contain;
     flex-direction: row;
 
 }
-.placeholder:hover{
-    cursor: pointer;
-}
+
 
 .single-question-container:hover{
  cursor: pointer;
