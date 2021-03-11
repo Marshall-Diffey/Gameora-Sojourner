@@ -10,7 +10,7 @@ const registrationsValidations = require('./registerValidations')
 const { requireAuth } = require('../auth')
 
 // this route displays a new question form that users can fill out to submit and create a new question
-router.get('/', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
+router.get('/', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
     const topics = await db.Topic.findAll();
 
     res.render('new-question', {
@@ -22,13 +22,13 @@ router.get('/', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
 
 const questionValidations = [
     check('title')
-      .exists({ checkFalsy: true })
-      .withMessage('Please provide a value for the Title')
-      .isLength({ max: 40 })
-      .withMessage('Title cannot exceed 40 characters'),
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a value for the Title')
+        .isLength({ max: 40 })
+        .withMessage('Title cannot exceed 40 characters'),
     check('body')
-      .exists({ checkFalsy: true })
-      .withMessage('Please provide a value for the question')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a value for the question')
     // check('topics')
     //   .custom(async(value) => {
     //       const realTopic = await db.Topic.findByPk(value)
@@ -43,14 +43,14 @@ const questionValidations = [
 
 // route below this line was causing unhandled promise error
 // this route adds a question to the database and redirects to '/' after a fills out the question form and clicks the submit button
- router.post('/', csrfProtection, requireAuth, questionValidations, asyncHandler(async (req, res) => {
-     const {
-         title,
-         topics, //this references pug value attribute "topic.id"
-         body,
-        } = req.body;
-        const topic = await db.Topic.findByPk(topics) //finding topic object
-        const { userId } = req.session.auth
+router.post('/', csrfProtection, requireAuth, questionValidations, asyncHandler(async (req, res) => {
+    const {
+        title,
+        topics, //this references pug value attribute "topic.id"
+        body,
+    } = req.body;
+    const topic = await db.Topic.findByPk(topics) //finding topic object
+    const { userId } = req.session.auth
 
     const newQuestion = db.Question.build({
         title,
@@ -60,41 +60,42 @@ const questionValidations = [
     });
     const validatorErrors = validationResult(req);
 
-      if (validatorErrors.isEmpty()) {
+    if (validatorErrors.isEmpty()) {
 
-          await newQuestion.save();
-           return req.session.save(() => {
-               res.redirect('/')
-           })
-      } else {
-          const topics = await db.Topic.findAll();
-          const errors = validatorErrors.array().map(error => error.msg)
-          return res.render('new-question', {
-              title: 'New Question',
-              topics,
-              body,
-              csrfToken: req.csrfToken(),
-              errors
-          })
-      }
- }));
+        await newQuestion.save();
+        return req.session.save(() => {
+            res.redirect('/')
+        })
+    } else {
+        const topics = await db.Topic.findAll();
+        const errors = validatorErrors.array().map(error => error.msg)
+        return res.render('new-question', {
+            title: 'New Question',
+            topics,
+            body,
+            csrfToken: req.csrfToken(),
+            errors
+        })
+    }
+}));
 // this route should display a specific question and its comments when a question is clicked
- router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
+router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
+    console.log('---testlog')
     const questionId = parseInt(req.params.id, 10);
     const question = await db.Question.findByPk(questionId); //{include: ['userId', 'topicId']}
-    const comments = await db.Comment.findAll({where: {questionId}})
- 
-     
+    const comments = await db.Comment.findAll({ where: { questionId } })
+
+
     //console.log(question);
-    if(question === null) {
+    if (question === null) {
         //const error = new Error(''); possibly res.send an error instead of redirecting
         console.log(';lkajsdf')
         return res.redirect('/'); // would like to send error message or error in pug file in case of question being deleted mid get request
     }
-    const {title} = question;
-     if (req.session.auth) {
-         var { userId } = req.session.auth //USING VAR BRO
-     }
+    const { title } = question;
+    if (req.session.auth) {
+        var { userId } = req.session.auth //USING VAR BRO
+    }
     return res.render('question', {
         title,
         comments,
@@ -102,9 +103,9 @@ const questionValidations = [
         csrfToken: req.csrfToken(),
         userId
     })
- }))
+}))
 
- router.delete('/:id(\\d+)', requireAuth, asyncHandler(async(req, res) => {
+router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id, 10);
     const question = await db.Question.findByPk(questionId);
     if (question === null) {
@@ -113,7 +114,30 @@ const questionValidations = [
     return await question.destroy({
         where: { id: questionId }
     }).end()
- }))
+}))
+
+router.get('/edit/:id(\\d+)', asyncHandler(async (req, res) => {
+    const questionId = parseInt(req.params.id, 10)
+    const question = await db.Question.findByPk(questionId)
+
+    res.json(question)
+
+}))
+router.post('/:id(\\d+)/edit', asyncHandler(async (req, res) => {
+    console.log('in the backend ')
+    const { finalTitle, finalQuestion, questionId } = req.body
+    const question = await db.Question.findByPk(questionId)
+
+    const updatedQuestion = question.update({
+        title: finalTitle,
+        body: finalQuestion
+    })
+    question.save()
+
+    res.json(updatedQuestion)
+
+
+}))
 
 // router.delete('/:id',)
 // router.put('/:id',) bonus route if we have time to implement question editing

@@ -1,20 +1,24 @@
 extends layout
 
-block content
+append head
+  script(src="/javascripts/questionPage.js" type="module")
 
-    div(id='comment-div')
-        div
-          include error.pug
-          span=title
-          div=question.body
-            if (userId === question.userId)
-              button(class="delete-button" value=question.id) Delete
-        each comment in comments
-            div=comment.body
-              if (userId === comment.userId)
-                button(class="commentDeleteButton" value=comment.id) Delete
-        form(method='post' action='/comments' id=question.id name='form')
-            input(name='_csrf' type='hidden' value=csrfToken)
-            input(name='questionId' type='hidden' value=question.id)
-            textarea(id='newComment' name='newComment' placeholder='Add comment here')
-            button(class="addCommentButton" type='submit' id=question.id) Add Comment
+block content
+    div(id="body-div")
+      div(id='comment-div')
+          div
+            include error.pug
+            span=title
+            div(id='questionDiv')=question.body
+              if (userId === question.userId)
+                button(class="edit-question" value=question.id) Edit My Question
+                button(class="delete-button" value=question.id) Delete Question
+              each comment in comments
+                div(name='comments' id='comment')=comment.body
+                  if (userId === comment.userId)
+                    button(class="commentDeleteButton" value=comment.id) Delete Comment
+          form(id=question.id name='form')
+              //-input(name='_csrf' type='hidden' value=csrfToken)
+              input(name='questionId' type='hidden' value=question.id)
+              textarea(id='newComment' name='newComment' placeholder='Add comment here')
+              button(class="addCommentButton" type='submit' id=question.id) Add Comment
