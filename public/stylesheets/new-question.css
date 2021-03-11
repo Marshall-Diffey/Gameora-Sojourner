@@ -1,0 +1,78 @@
+/* body {
+  background-image: url("/images/wallhaven-q-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+} */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 200px;
+}
+.question-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px solid rgba(0, 0, 0, 0.05);
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  background-color: whitesmoke;
+}
+
+#title {
+  width: 381px;
+  padding: 5px 0 5px 0;
+  margin: 5px 0 5px 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+#content {
+  width: 381px;
+  height: 103px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 7px;
+}
+
+#topics {
+  width: 381px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.post-btn {
+  background-color: #e0e5ec;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
+    -9px -9px 16px rgba(255, 255, 255, 0.5);
+  color: #4d3252;
+  font-weight: 700;
+  height: 48px;
+  margin-top: 10px;
+  margin-bottom: 24px;
+  margin-right: 24px;
+  overflow: hidden;
+  position: relative;
+  text-transform: uppercase;
+  width: 96px;
+}
+
+.post-btn:hover {
+  opacity: 1;
+  top: 0;
+  left: 0;
+  transform: translateX(0);
+  transition-property: transform, opacity;
+  transition-duration: 0.7s, 0.15s;
+  transition-timing-function: ease-in-out;
+  background-color: lightsteelblue;
+  color: whitesmoke;
+}
