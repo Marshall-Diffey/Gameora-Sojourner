@@ -6,6 +6,7 @@ append head
     link(rel="stylesheet" href="/stylesheets/index.css")
     //- add page specific js
     script(src="/javascripts/index.js" type="module")
+    script(src="/javascripts/homeClick.js" type="module")
 
 block content
   h1= title
@@ -14,9 +15,9 @@ block content
     span(class="placeholder")
     span(class="question-container")
       each question in questions
-        div(class="single-question-container")
+        div(id='questionDiv' class="single-question-container")
           label(for="question" class="question-label") Title: #{question.title}
-          div(name="question")= question.body
+          div(name="question" id=question.id)= question.body
     span(class="topic-container")
       each topic in topics
         a(href=`/topics/${topic.id}`)=topic.type

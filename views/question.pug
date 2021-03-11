@@ -1,16 +1,20 @@
 extends layout
 
 block content
-  
+
     div(id='comment-div')
         div
-            span=title
-            div=question.body
-              if (userId === question.userId)
-                button(class="delete-button" value=question.id) Delete
+          include error.pug
+          span=title
+          div=question.body
+            if (userId === question.userId)
+              button(class="delete-button" value=question.id) Delete
         each comment in comments
             div=comment.body
-        form(method='post' action='/comments')
+              if (userId === comment.userId)
+                button(class="commentDeleteButton" value=comment.id) Delete
+        form(method='post' action='/comments' id=question.id name='form')
             input(name='_csrf' type='hidden' value=csrfToken)
+            input(name='questionId' type='hidden' value=question.id)
             textarea(id='newComment' name='newComment' placeholder='Add comment here')
-            button(type='submit') Add Comment
+            button(class="addCommentButton" type='submit' id=question.id) #{question.id}
