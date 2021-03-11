@@ -1,14 +1,22 @@
 extends layout
 
+append head
+    //- add page specific styles by appending to the head
+    title=title
+    link(rel="stylesheet" href="/stylesheets/new-question.css")
+
 block content
     include error.pug
-    form(method='post' action='/questions')
+
+    div(class="form-container")
+      form(class="question-form" method='post' action='/questions')
         input(name='_csrf' type='hidden' value=csrfToken)
         label(for='title') Title
         input(id='title' name='title' type='text' required)
-        textarea(id='content' name='body' required)
+        textarea(id='content' name='body' placeholder="Please begin your question with 'What', 'Why', 'How', etc!" required)
         label(for='topics') Topic
         select(id='topics' name='topics' required)
             each topic in topics
                 option(value=topic.id)=topic.type
-        button(type='submit') Post Question
+        div(class="btn-container")
+          button(class="post-btn" type='submit') Post Question
