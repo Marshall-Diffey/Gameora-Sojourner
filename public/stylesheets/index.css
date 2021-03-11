@@ -3,15 +3,32 @@ h1 {
 }
 
 body{
-    background-color:lightblue;
+    background-color:rgb(19, 34, 40);
     display: flex;
     flex-direction: column;
+background-image: url("/images/wallhaven-0p9m1p.jpg");
+background-repeat: repeat;
+z-index: -1;
+background-size: contain;
+
     
 }
+
+.game-ora-pic{
+    padding-left: 20px;
+    font-family: cursive;
+    font-weight: bolder;
+    font-size: 30px;
+    color: rgb(160, 160, 160);
+      width: 250px;
+    height: auto;
+}
+
 .placeholder{
-   
-    height: 600px;
-    width: 600px;
+
+   padding-top: 80px;
+   display: flex;
+   padding-left: 400px;
 }
 .page-container{
     display: flex;
@@ -22,30 +39,36 @@ body{
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    border: 1px solid;
-    width: 600px;
-    box-shadow:10px 5px 5px grey;
+    border: 1px rosybrown;
+    width: 500px;
     margin-right: 300px;
     margin-bottom: 20px;
     border-radius: 5px;
+    background-color: rgba(53, 53, 53, 0.4);
+    text-align: center;
+    color: rgb(152, 142, 142);
+    font-family: Segoe UI;
 }
 .question-label {
-    
-    background-color:lightgrey;
+    color: rgb(187, 187, 187);
+    font-style: italic;
     border-radius: 5px;
+    font-family: Segoe UI;
+    font-size: 21px;
     
 }
 .topic-container{
     
-    color:red;
+    color:rgb(206, 0, 0);
     display: flex;
-    flex-direction: column;
-    width: 200px;
-    border: 1px solid rgba(0,0,0, 0.5);
-    align-items: center;
-    justify-content: space-between;
-    background-color:lightgrey;
-    padding-top: 5px;
-    box-shadow:10px 5px 5px grey;
-    border-radius: 5px;
+    flex-direction: row;
+    align-items:initial;
+    justify-content: space-around;
+    font-family: Segoe UI;
+    font-style: italic;
+    padding-bottom: 50px;
+}
+
+.topic-container a {
+    text-decoration: none;
 }

@@ -28,9 +28,10 @@ h1 {
 #navbar {
   display: flex;
   justify-content: space-between;
-  border: 2px solid;
+  border: 2px solid rgba(131, 131, 131, 0.4);
   padding: 5px;
-  
+  border-radius: 10px;
+  text-decoration: none;
 }
 #logo {
   height: 25px;
@@ -52,4 +53,12 @@ h1 {
   align-items: center;
   margin-right: 5px;
   
+}
+
+button {
+  background-color: rgba(131, 131, 131, 0.4);
+color: white;
+display: flex;
+justify-content: right;
+text-decoration: none;
 }
