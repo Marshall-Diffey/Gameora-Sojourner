@@ -28,10 +28,11 @@ h1 {
 #navbar {
   display: flex;
   justify-content: space-between;
-  border: 2px solid rgba(131, 131, 131, 0.4);
+  border: 2px solid rgba(131, 131, 131, 0.3);
   padding: 5px;
-  border-radius: 10px;
   text-decoration: none;
+  height: 30px;
+  background-color: rgba(121, 120, 120, 0.3);
 }
 #logo {
   height: 25px;
@@ -56,9 +57,24 @@ h1 {
 }
 
 button {
-  background-color: rgba(131, 131, 131, 0.4);
-color: white;
-display: flex;
-justify-content: right;
-text-decoration: none;
+   background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+      font-family: Segoe UI;
+}
+
+a:hover {
+ text-decoration: none;
+}
+
+.demo-button{
+  font-size: 17px;
+   font-family: Segoe UI;
+    text-decoration: underline;
+}
+.demo-button:hover{
+  text-decoration:none;
 }
