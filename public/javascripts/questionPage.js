@@ -7,11 +7,9 @@ const newComment = document.getElementById('newComment');
 const questionId = document.getElementsByName('questionId');
 const commentDivs = document.getElementsByName('comments');
 const questionsDiv = document.getElementById('questionDiv');
-//delete every comment breaks whole page
-// if (commentDeleteButtons.length) {
+const editQuestionButton = document.querySelector('.edit-question');
+const bodyDiv = document.getElementById('body-div')
 
-//     deleteListener()
-// }
 
 addCommentButton.addEventListener('click', async (event) => {
     event.preventDefault();
@@ -42,11 +40,6 @@ addCommentButton.addEventListener('click', async (event) => {
     deleteButton.value = res.comment.id;
     deleteButton.innerText = 'Delete Comment';
     newCommentDiv.appendChild(deleteButton);
-    // commentDeleteButtons = document.querySelectorAll('.commentDeleteButton');
-    // if (commentDeleteButtons.length) {
-
-    //     deleteListener()
-    // }
     newCommentDeleteButton(deleteButton)
 
 
@@ -66,7 +59,6 @@ deleteButtons.forEach((button) => button.addEventListener('click', async (event)
     }, 3000)
 }))
 
-// const deleteListener = () => {
 commentDeleteButtons.forEach((button) => button.addEventListener('click', async (event) => {
     const commentId = event.target.value
 
@@ -78,8 +70,7 @@ commentDeleteButtons.forEach((button) => button.addEventListener('click', async 
 
 
 }))
-//}
-//deleteListener()
+
 const newCommentDeleteButton = (newButton) => {
     newButton.addEventListener('click', async (event) => {
         const commentId = event.target.value
@@ -90,3 +81,56 @@ const newCommentDeleteButton = (newButton) => {
         })
     })
 }
+
+editQuestionButton.addEventListener('click', async (event) => {
+    const result = await fetch(`/questions/edit/${event.target.value}`)
+
+    const res = await result.json();
+    console.log(res)
+    bodyDiv.innerHTML = ''
+    const header = document.createElement('h3')
+    header.setAttribute('class', 'edit-header')
+    header.innerText = 'EDIT YOUR QUESTION BELOW'
+    bodyDiv.appendChild(header)
+    const newTitle = document.createElement('input')
+    newTitle.setAttribute('class', 'new-title')
+    newTitle.value = res.title;
+    header.appendChild(newTitle)
+    const editedQuestion = document.createElement('textarea')
+    editedQuestion.setAttribute('class', 'edit-question-body')
+    editedQuestion.value = res.body
+    header.appendChild(editedQuestion)
+    const confirmEditButton = document.createElement('button')
+    confirmEditButton.setAttribute('class', 'confirm-edit')
+    confirmEditButton.innerText = 'Confirm Your Edit'
+    header.appendChild(confirmEditButton)
+    confirmEditButton.value = event.target.value
+    confirmEditButton.addEventListener('click', async (event) => {
+        console.log('working')
+        const finalTitle = newTitle.value
+        const finalQuestion = editedQuestion.value
+        const questionId = event.target.value
+        const body = {
+            finalTitle,
+            finalQuestion,
+            questionId
+        }
+        console.log('here')
+
+
+        const updateQuestion = await fetch(`/questions/${questionId}/edit`, {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+
+        })
+        console.log('fetch')
+
+
+        window.location.href = `/questions/${questionId}`
+
+    })
+
+})
