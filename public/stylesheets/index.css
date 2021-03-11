@@ -14,9 +14,11 @@ background-size: contain;
     
 }
 .img-container{
+  
    margin: -1px 0px -40px 0px;
 }
 .game-ora-pic{
+    padding-top: 37px;
     padding-left: 20px;
     font-family: cursive;
     font-weight: bolder;
@@ -28,7 +30,6 @@ background-size: contain;
 
 .placeholder{
 
- 
    display: flex;
    padding-left: 400px;
 }
@@ -36,6 +37,17 @@ background-size: contain;
     display: flex;
     flex-direction: row;
 
+}
+.placeholder:hover{
+    cursor: pointer;
+}
+
+.single-question-container:hover{
+ cursor: pointer;
+ font-size: 18px;
+ background-color:  rgba(94, 94, 94, 0.4);
+ border-radius: 10px;
+ font-size: 18px;
 }
 .single-question-container {
     display: flex;
@@ -51,7 +63,12 @@ background-size: contain;
     text-align: center;
     color: rgb(152, 142, 142);
     font-family: Segoe UI;
+    cursor: pointer;
+} 
+.jebhadtodoit:hover {
+ border-radius: 10px;
 }
+
 .question-label {
     
     color: rgb(187, 187, 187);

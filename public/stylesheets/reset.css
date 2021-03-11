@@ -33,6 +33,9 @@ h1 {
   text-decoration: none;
   height: 30px;
   background-color: rgba(121, 120, 120, 0.3);
+  position: fixed;
+  
+  width: 100%;
 }
 #logo {
   height: 25px;
@@ -68,6 +71,8 @@ button {
 
 a:hover {
  text-decoration: none;
+ background-color:  rgba(255, 0, 0, 0.2);
+ border-radius: 10px;
 }
 
 .demo-button{
@@ -77,4 +82,6 @@ a:hover {
 }
 .demo-button:hover{
   text-decoration:none;
+  background-color:  rgba(255, 0, 0, 0.2);
+  border-radius: 10px;
 }

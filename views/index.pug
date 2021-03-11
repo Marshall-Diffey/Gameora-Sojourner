@@ -16,9 +16,9 @@ block content
         a(href=`/topics/${topic.id}` class="topic-buttons")=topic.type
   div(class="page-container")
     span(class="placeholder")
-    div(class="question-container")
+    div(class="question-container" name="question-container")
       each question in questions
         div(id='questionDiv' class="single-question-container")
-          label(for="question" class="question-label") Title: #{question.title}
-          div(name="question" id=question.id)= question.body
+          label(for="question" class="question-label") Question: #{question.title}
+          div(name="question" id=question.id class="jebhadtodoit")= question.body
     
