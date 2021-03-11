@@ -1,0 +1,120 @@
+// delete, post /comments/:id
+// post /comments
+// bonus: put /comments/:id
+const express = require('express');
+const router = express.Router();
+const { csrfProtection, asyncHandler } = require('./utils')
+const db = require('../db/models')
+const { validationResult, check } = require('express-validator')
+//const registrationsValidations = require('./registerValidations')
+const { requireAuth } = require('../auth')
+
+// this route displays a new question form that users can fill out to submit and create a new question
+// router.get('/', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
+//     const topics = await db.Topic.findAll();
+
+//     res.render('new-question', {
+//         csrfToken: req.csrfToken(),
+//         topics,
+//         title: "New Question"
+//     })
+// }));
+
+const commentValidations = [
+    // check('title')
+    //   .exists({ checkFalsy: true })
+    //   .withMessage('Please provide a value for the Title')
+    //   .isLength({ max: 40 })
+    //   .withMessage('Title cannot exceed 40 characters'),
+    check('newComment')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a value for the comment')
+    // check('topics')
+    //   .custom(async(value) => {
+    //       const realTopic = await db.Topic.findByPk(value)
+    //       if (!realTopic) {
+    //           throw new Error('Quit trolling, mate');
+    //       }
+    //       return true;
+    //   })
+];
+
+// route below this line was causing unhandled promise error
+// this route adds a question to the database and redirects to '/' after a fills out the question form and clicks the submit button
+ router.post('/', csrfProtection, requireAuth, commentValidations, asyncHandler(async (req, res) => {
+    const {newComment} = req.body;
+    const { userId } = req.session.auth;
+    const questionId = parseInt(req.body.questionId, 10)
+    const question = await db.Question.findByPk(questionId);
+    const comments = await db.Comment.findAll({where: {questionId}});
+
+    console.log(newComment);
+    console.log(questionId);
+
+    const comment = db.Comment.build({
+        body: newComment,
+        userId,
+        questionId
+    });
+    const validatorErrors = validationResult(req);
+
+      if (validatorErrors.isEmpty()) {
+
+          await comment.save();
+           return req.session.save(() => {
+            res.redirect(`/questions/${questionId}`)
+           })
+      } else {
+          const topics = await db.Topic.findAll();
+          const errors = validatorErrors.array().map(error => error.msg)
+          return res.render('question', {
+              title: 'Comment Error',
+              comments,
+              question,
+              csrfToken: req.csrfToken(),
+              errors,
+              userId
+          })
+      }
+ }));
+// this route should display a specific question and its comments when a question is clicked
+ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
+    const questionId = parseInt(req.params.id, 10);
+    const question = await db.Question.findByPk(questionId); //{include: ['userId', 'topicId']}
+    const comments = await db.Comment.findAll({where: {questionId}})
+
+
+    //console.log(question);
+    if(question === null) {
+        //const error = new Error(''); possibly res.send an error instead of redirecting
+        console.log(';lkajsdf')
+        return res.redirect('/'); // would like to send error message or error in pug file in case of question being deleted mid get request
+    }
+    const {title} = question;
+     if (req.session.auth) {
+         var { userId } = req.session.auth //USING VAR BRO
+     }
+    return res.render('question', {
+        title,
+        comments,
+        question,
+        csrfToken: req.csrfToken(),
+        userId
+    })
+ }))
+
+ router.delete('/:id(\\d+)', requireAuth, asyncHandler(async(req, res) => {
+    const questionId = parseInt(req.params.id, 10);
+    const question = await db.Question.findByPk(questionId);
+    if (question === null) {
+        return res.redirect('/');
+    }
+    return await question.destroy({
+        where: { id: questionId }
+    }).end()
+ }))
+
+// router.delete('/:id',)
+// router.put('/:id',) bonus route if we have time to implement question editing
+
+module.exports = router;
