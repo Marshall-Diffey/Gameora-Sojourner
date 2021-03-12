@@ -8,10 +8,56 @@ body{
     width : 500px;
     box-shadow: 5px 5px 5px .5px lightcoral;
 }
-.register-container{
+/* .register-container{
     display:flex;
     flex-direction:column;
     align-items:center;
     width: 500px;
     
+} */
+
+
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    font-size: 15px;
+    color: rgba(255, 255, 255);
+    font-family: Segoe UI;
+    
 }
+
+.user-name{
+  background-color: rgba(255, 255, 255, 0.8);
+  margin: 5px;
+}
+
+.email{
+  background-color: rgba(255, 255, 255, 0.8);
+ margin: 5px;
+}
+
+.password{
+  background-color: rgba(255, 255, 255, 0.8);
+  margin: 5px;
+}
+
+.conpassword{
+  background-color: rgba(255, 255, 255, 0.8);
+  margin: 5px;
+}
+
+.account-exist{
+color: white;
+display: flex;
+justify-content: center;
+}
+
+.login{
+color: white;
+display: flex;
+padding-left: 5px;
+}
+
