@@ -8,14 +8,14 @@ html
     nav#navbar
       span.left-navBar
         a.navButton(href='/')
-          img#logo(src="/images/logo.png") 
+          img#logo(src="/images/logo.png")
       span.right-navBar
         button.navButton
           a(href='/questions') Create a new question
         if authenticated
           form(action="/users/logout" method="post")
             button.navButton(type="submit") Logout
-          div.navButton Welcome #{user.userName}
+          div.navButton Welcome, #{user.userName}
         else
           button
             a(href="/users/login") Login
@@ -23,5 +23,5 @@ html
             a(href="/users/register") Register
           form(action='/users/logindemo' method='post')
             button(type='submit' class="demo-button") Demo User
-            
+
   block content
