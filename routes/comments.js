@@ -10,12 +10,12 @@ const commentValidations = [
         .exists({ checkFalsy: true })
         .withMessage('Please provide a value for the comment')
 ];
-router.get('/auth', asyncHandler(async(req, res) => {
+router.get('/auth', asyncHandler(async (req, res) => {
     let authorized;
     if (req.session.auth) {
-        return res.json({authorized: true});
+        return res.json({ authorized: true });
     } else {
-        return res.json({authorized: false});
+        return res.json({ authorized: false });
     }
 }))
 
@@ -73,9 +73,26 @@ router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     if (comment === null) {
         return res.redirect('/');
     }
-    return await comment.destroy({})
+    return await db.Comment.destroy({
+        where: {
+            id: commentId
+        }
+    })
 }))
-
+router.get('/edit/:id(\\d+)', asyncHandler(async (req, res) => {
+    const commentId = parseInt(req.params.id, 10)
+    const getComment = await db.Comment.findByPk(commentId)
+    return res.json(getComment)
+}))
+router.post('/edit/:id(\\d+)', asyncHandler(async (req, res) => {
+    const { finalComment, commentId } = req.body
+    const comment = await db.Comment.findByPk(commentId)
+    console.log(comment.body)
+    const updateComment = comment.update({
+        body: finalComment
+    })
+    return updateComment.save()
+}))
 // router.delete('/:id',)
 // router.put('/:id',) bonus route if we have time to implement question editing
 
