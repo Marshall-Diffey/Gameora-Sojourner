@@ -1,4 +1,4 @@
-const db = require('./db/models')
+const db = require('./db/models');
 
 
 
@@ -31,8 +31,9 @@ const restoreUser = async (req, res, next) => {
 };
 
 const logOutUser = (req, res) => {
-    delete req.session.auth
+    delete req.session.auth;
 }
+
 const requireAuth = (req, res, next) => {
     if (!res.locals.authenticated) {
         const needLogin = true;

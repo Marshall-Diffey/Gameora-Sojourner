@@ -16,6 +16,4 @@ topicsRouter.get(
   })
 );
 
-module.exports = {
-  topicsRouter,
-};
+module.exports = {topicsRouter};
