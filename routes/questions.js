@@ -70,7 +70,6 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id, 10);
     const question = await db.Question.findByPk(questionId);
     const comments = await db.Comment.findAll({ where: { questionId } })
-
     if (question === null) {
         return res.redirect('/'); // would like to send error message or error in pug file in case of question being deleted mid get request
     }
@@ -122,15 +121,17 @@ router.post('/:id(\\d+)/edit', asyncHandler(async (req, res) => {
     question.save()
     res.json(updatedQuestion)
 }))
-router.get('/auth/:id(\\d+)', (req, res) => {
+router.get('/auth/:id(\\d+)', asyncHandler(async (req, res) => {
     console.log('-----------------------------------------------')
     const questionId = parseInt(req.params.id, 10)
+    const question = await db.Question.findByPk(questionId)
 
-    if (questionId === req.session.auth.userId) {
+
+    if (question.userId === req.session.auth.userId) {
         return res.json({ authorized: 'yes' });
     } else {
         return res.json({ authorized: 'no' });
     }
-})
+}))
 
 module.exports = router;

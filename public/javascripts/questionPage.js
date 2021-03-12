@@ -1,22 +1,13 @@
-const id = parseInt(window.location.pathname.split('/')[2], 10)
-let imTheOwner = null;
 
+const owned = document.getElementById('owned')
 
-const iOwnThisPage = async (id) => {
-    const result = await fetch(`/questions/auth/${id}`)
-    const res = await result.json()
-    console.log(res.authorized)
-    if (res.authorized === 'yes') {
-        imTheOwner = true
-    } else {
-        imTheOwner = false
-    }
-}
-
+//if the user owns the question then owned.value equals a string of true, and vise versa
+console.log(owned.value)
 let questionDeleteButton;
 let editQuestionButton;
-iOwnThisPage(id)
-if (imTheOwner) {
+
+
+if (owned.value === 'true') {
     questionDeleteButton = document.querySelector('.delete-button');
     editQuestionButton = document.querySelector('.edit-question');
 
@@ -78,7 +69,7 @@ addCommentButton.addEventListener('click', async (event) => {
         window.location.href = '/users/login';
     }
 })
-if (imTheOwner) {
+if (owned.value === 'true') {
 
 
     questionDeleteButton.addEventListener('click', async (event) => {
@@ -114,7 +105,7 @@ const newCommentDeleteButton = (newButton) => {
     })
 }
 
-if (imTheOwner) {
+if (owned.value === 'true') {
 
 
     editQuestionButton.addEventListener('click', async (event) => {

@@ -5,6 +5,10 @@ append head
   link(rel="stylesheet", href="/stylesheets/singleQuestion.css")
 
 block content
+    if (userId === question.userId)
+      input(id='owned' type='hidden' value='true')
+    else
+      input(id='owned' type='hidden' value='false')
     div(class="img-container")
             img(src="/images/logo.png" class="game-ora-pic")
     div(id="body-div")
