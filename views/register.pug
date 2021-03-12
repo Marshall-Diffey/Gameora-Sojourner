@@ -1,28 +1,32 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel='stylesheet' href='/stylesheets/register.css')
-        title Document
-    body
+
+extends layout
+append head
+    //- add page specific styles by appending to the head
+    title=title
+    link(rel="stylesheet" href="/stylesheets/new-question.css")
+    link(rel="stylesheet" href="/stylesheets/register.css")
+    script(src="/javascripts/index.js" type="module")
+    script(src="/javascripts/homeClick.js" type="module")
+block content
     include error.pug
-        div(class="register-container")
-            img(src='/images/logo.jpg' class='logo')
-            a(href='/') 🏠
-            form(action='/users/register' method='post')
-                input(name='_csrf' type='hidden' value=csrfToken)
-                label(for='userName') User Name
-                input(name='userName' type='text' required)
-                label(for='email') Email
-                input(name='email' type='text' required)
-                label(for='password') Password
-                input(name='password' type='password' required)
-                label(for='confirmPassword') Confirm Password
-                input(name='confirmPassword' type='password' required)
-                button(type='submit') Register
-                
-            p If you already have an account click the button below to login
-            button 
-                a(href='/users/login') Login
+      p
+        p .
+          div(class="register-container")
+              div(class="img-container")
+                img(src="/images/logo.png" class="game-ora-pic")
+              
+              form(action='/users/register' method='post' class="form")
+                  input(name='_csrf' type='hidden' value=csrfToken)
+                  label(for='userName' class="user-name-label") User Name
+                  input(name='userName' type='text' class="user-name" required)
+                  label(for='email') Email
+                  input(name='email' type='text' class="email" required)
+                  label(for='password') Password
+                  input(name='password' type='password' class="password" required)
+                  label(for='confirmPassword') Confirm Password
+                  input(name='confirmPassword' type='password' class="conpassword" required)
+                  button(type='submit' class="register") Register
+               
+              p(class="account-exist") Already have an account?    
+              
+                  a(href='/users/login' class="login") Login
