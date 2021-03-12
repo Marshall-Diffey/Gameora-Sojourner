@@ -4,15 +4,28 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
 
 * {
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6, a, ol, li, ul, div, span,
-body, header, nav {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+ol,
+li,
+ul,
+div,
+span,
+body,
+header,
+nav {
   font-size: 1rem;
   color: inherit;
   background-color: transparent;
@@ -34,54 +47,59 @@ h1 {
   height: 30px;
   background-color: rgba(121, 120, 120, 0.3);
   position: fixed;
-  
+
   width: 100%;
 }
 #logo {
   height: 25px;
-  margin-top:10px;
+  margin-top: 10px;
 }
 .navButton {
-  height:25px;
+  height: 25px;
   border-radius: 10%;
- 
 }
 .left-navBar {
   display: flex;
   align-items: center;
   margin-left: 5px;
-  
 }
 .right-navBar {
   display: flex;
   align-items: center;
   margin-right: 5px;
-  
 }
 
 button {
-   background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-      font-family: Segoe UI;
+  background-color: #e0e5ec;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
+    -9px -9px 16px rgba(255, 255, 255, 0.5);
+  color: #4d3252;
+
+  height: 24px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  overflow: hidden;
+  position: relative;
+  text-transform: uppercase;
+  width: 96px;
 }
 
 a:hover {
- text-decoration: none;
- background-color:  rgba(255, 0, 0, 0.2);
- border-radius: 10px;
+  text-decoration: none;
+  background-color: rgba(255, 0, 0, 0.2);
+  border-radius: 10px;
 }
 
-.demo-button{
+.demo-button {
   font-size: 17px;
-   font-family: Segoe UI;
-    text-decoration: underline;
+  font-family: Segoe UI;
+  text-decoration: underline;
 }
-.demo-button:hover{
-  text-decoration:none;
-  background-color:  rgba(255, 0, 0, 0.2);
+.demo-button:hover {
+  text-decoration: none;
+  background-color: rgba(255, 0, 0, 0.2);
   border-radius: 10px;
 }
