@@ -69,6 +69,11 @@ h1 {
   margin-right: 5px;
 }
 
+.create-question {
+  font-size: 12px;
+  padding: 5px;
+}
+
 button {
   background-color: #e0e5ec;
   border: none;
@@ -76,7 +81,7 @@ button {
   box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
     -9px -9px 16px rgba(255, 255, 255, 0.5);
   color: #4d3252;
-
+  font-size: 12px;
   height: 24px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -84,7 +89,7 @@ button {
   overflow: hidden;
   position: relative;
   text-transform: uppercase;
-  width: 96px;
+  width: 150px;
 }
 
 a:hover {
