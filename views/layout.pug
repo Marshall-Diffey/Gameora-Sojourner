@@ -13,16 +13,16 @@ html
       //- div(class="fps" id="fps") fps:#{num}
       span.right-navBar
         button.navButton
-          a(class="create-question" href='/questions') Create Question
+          a(class="create-question shimmer-btn" href='/questions') Create Question
         if authenticated
           form(action="/users/logout" method="post")
-            button.navButton(type="submit") Logout
+            button.navButton(class="shimmer-btn" type="submit") Logout
           div.navButton Welcome, #{user.userName}
         else
           button
-            a(href="/users/login") Login
+            a(class="shimmer-btn" href="/users/login") Login
           button
-            a(href="/users/register") Register
+            a(href="/users/register" class="shimmer-btn") Register
           form(action='/users/logindemo' method='post')
             button(type='submit' class="demo-button") Demo User
         div(class="fps" id="fps") fps:22
