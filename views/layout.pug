@@ -7,21 +7,21 @@ html
   body
     nav#navbar
       span.left-navBar
-        a.navButton(href='/')
+        a.navButton(class="shimmer-btn" href='/')
           img#logo(src="/images/logo.png")
       span.right-navBar
         button.navButton
-          a(class="create-question" href='/questions') Create Question
+          a(class="create-question shimmer-btn" href='/questions') Create Question
         if authenticated
           form(action="/users/logout" method="post")
-            button.navButton(type="submit") Logout
+            button.navButton(type="submit" class="shimmer-btn") Logout
           div.navButton Welcome, #{user.userName}
         else
           button
-            a(href="/users/login") Login
+            a(href="/users/login" class="shimmer-btn") Login
           button
-            a(href="/users/register") Register
+            a(href="/users/register" class="shimmer-btn") Register
           form(action='/users/logindemo' method='post')
-            button(type='submit' class="demo-button") Demo User
+            button(type='submit' class="demo-button shimmer-btn") Demo User
 
   block content
