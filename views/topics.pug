@@ -3,11 +3,15 @@ extends layout
 append head
     //- add page specific styles by appending to the head
     title=title
-    link(rel="stylesheet" href="/stylesheets/topics.css")
+    link(rel="stylesheet" href="/stylesheets/index.css")
     //- add page specific js
     script(src="/javascripts/index.js" type="module" defer)
 
 block content
+
+
+    div(class="img-container")
+        img(src="/images/logo.png" class="game-ora-pic")
     div(class="page-container")
         span(class="placeholder")
         span(class="question-container")
