@@ -1,5 +1,5 @@
 let commentDeleteButtons = document.querySelectorAll('.commentDeleteButton');
-const deleteButtons = document.querySelectorAll('.delete-button');
+const questionDeleteButton = document.querySelector('.delete-button');
 const comment = document.getElementById('comment-div');
 
 const questionId = document.getElementsByName('questionId');
@@ -9,6 +9,7 @@ const newComment = document.getElementById('newComment');
 const commentDivs = document.getElementsByName('comments');
 const addCommentButton = document.querySelector('.addCommentButton');
 const bodyDiv = document.getElementById('body-div')
+
 
 
 addCommentButton.addEventListener('click', async (event) => {
@@ -23,7 +24,7 @@ addCommentButton.addEventListener('click', async (event) => {
     const authRes = await auth.json();
     console.log(authRes);
 
-    if(authRes.authorized){
+    if (authRes.authorized) {
         const result = await fetch(`/comments`, {
             method: 'POST',
             body: JSON.stringify(body),
@@ -38,19 +39,25 @@ addCommentButton.addEventListener('click', async (event) => {
         newCommentDiv.setAttribute('id', 'comment');
         newCommentDiv.innerText = res.comment.body;
         questionDiv.appendChild(newCommentDiv);
+        let editCommentButton = document.createElement('button')
+        editCommentButton.setAttribute('class', 'commentEditButton');
+        editCommentButton.value = res.comment.id;
+        editCommentButton.innerText = 'Edit Comment';
+        newCommentDiv.appendChild(editCommentButton);
         const deleteButton = document.createElement('button');
         deleteButton.setAttribute('class', 'commentDeleteButton');
         deleteButton.value = res.comment.id;
         deleteButton.innerText = 'Delete Comment';
         newCommentDiv.appendChild(deleteButton);
-        newCommentDeleteButton(deleteButton)
+        newCommentDeleteButton(deleteButton);
+        editCommentListener(editCommentButton)
     } else {
         alert('You must be logged in to access certain functionalities, or you can test user capabalities with the demo user button');
         window.location.href = '/users/login';
     }
 })
 
-deleteButtons.forEach((button) => button.addEventListener('click', async (event) => {
+questionDeleteButton.addEventListener('click', async (event) => {
 
     const questionId = event.target.value
 
@@ -62,7 +69,7 @@ deleteButtons.forEach((button) => button.addEventListener('click', async (event)
     setTimeout(() => {
         window.location.href = '/'
     }, 2000)
-}))
+})
 
 commentDeleteButtons.forEach((button) => button.addEventListener('click', async (event) => {
     const commentId = event.target.value
@@ -82,6 +89,7 @@ const newCommentDeleteButton = (newButton) => {
         })
     })
 }
+
 
 editQuestionButton.addEventListener('click', async (event) => {
     const result = await fetch(`/questions/edit/${event.target.value}`)
@@ -125,8 +133,62 @@ editQuestionButton.addEventListener('click', async (event) => {
 
         })
 
-        window.location.href = `/questions/${questionId}`
+        window.location.reload()
 
     })
 
 })
+const editCommentListener = (editCommentButton) => {
+    editCommentButton.addEventListener('click', async (event) => {
+        const commentId = event.target.value;
+        const result = await fetch(`/comments/edit/${commentId}`)
+
+        const res = await result.json();
+        console.log(res)
+        bodyDiv.innerHTML = ''
+        const newDiv = document.createElement('div')
+        newDiv.setAttribute('class', 'edit-header')
+        newDiv.innerText = 'Edit Your Comment:'
+        bodyDiv.appendChild(newDiv)
+        const editedComment = document.createElement('textarea')
+        editedComment.setAttribute('class', 'edit-comment')
+        editedComment.value = res.body
+        newDiv.appendChild(editedComment)
+        const confirmEditButton = document.createElement('button')
+        confirmEditButton.setAttribute('class', 'confirm-edit')
+        confirmEditButton.innerText = 'Confirm Your Edit'
+        newDiv.appendChild(confirmEditButton)
+        confirmEditButton.value = commentId
+        confirmEditButton.addEventListener('click', async (event) => {
+            const finalComment = editedComment.value
+            const commentId = event.target.value
+            const body = {
+                finalComment,
+                commentId
+            }
+
+            const updateComment = await fetch(`/comments/edit/${commentId}`, {
+                method: 'POST',
+                body: JSON.stringify(body),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+
+            })
+
+            window.location.reload()
+
+        })
+    })
+
+
+}
+let commentEditButtons = document.querySelectorAll('.commentEditButton')
+console.log(commentEditButtons)
+console.log('hello')
+if (commentEditButtons.length > 0) {
+
+    commentEditButtons.forEach(button => {
+        editCommentListener(button)
+    })
+}
