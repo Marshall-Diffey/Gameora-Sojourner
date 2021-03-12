@@ -122,5 +122,15 @@ router.post('/:id(\\d+)/edit', asyncHandler(async (req, res) => {
     question.save()
     res.json(updatedQuestion)
 }))
+router.get('/auth/:id(\\d+)', (req, res) => {
+    console.log('-----------------------------------------------')
+    const questionId = parseInt(req.params.id, 10)
+
+    if (questionId === req.session.auth.userId) {
+        return res.json({ authorized: 'yes' });
+    } else {
+        return res.json({ authorized: 'no' });
+    }
+})
 
 module.exports = router;
