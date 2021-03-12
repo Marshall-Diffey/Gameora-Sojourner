@@ -25,7 +25,6 @@ const registrationsValidations = [
                 .then((user) => {
                     if (user) return Promise.reject('The email you entered is already taken')
                 })
-
         }),
     check('password')
         .exists({ checkFalsy: true })
@@ -45,8 +44,6 @@ const registrationsValidations = [
             }
             return true
         })
-
 ]
-
 
 module.exports = registrationsValidations
