@@ -10,43 +10,15 @@ const commentValidations = [
         .exists({ checkFalsy: true })
         .withMessage('Please provide a value for the comment')
 ];
+router.get('/auth', asyncHandler(async(req, res) => {
+    let authorized;
+    if (req.session.auth) {
+        return res.json({authorized: true});
+    } else {
+        return res.json({authorized: false});
+    }
+}))
 
-// router.post('/', csrfProtection, requireAuth, commentValidations, asyncHandler(async (req, res) => {
-//     const { newComment } = req.body;
-//     const { userId } = req.session.auth;
-//     const questionId = parseInt(req.body.questionId, 10)
-//     const question = await db.Question.findByPk(questionId);
-//     const comments = await db.Comment.findAll({ where: { questionId } });
-
-//     console.log(newComment);
-//     console.log(questionId);
-
-//     const comment = db.Comment.build({
-//         body: newComment,
-//         userId,
-//         questionId
-//     });
-//     const validatorErrors = validationResult(req);
-
-//     if (validatorErrors.isEmpty()) {
-
-//         await comment.save();
-//         return req.session.save(() => {
-//             res.redirect(`/questions/${questionId}`)
-//         })
-//     } else {
-//         const topics = await db.Topic.findAll();
-//         const errors = validatorErrors.array().map(error => error.msg)
-//         return res.render('question', {
-//             title: 'Comment Error',
-//             comments,
-//             question,
-//             csrfToken: req.csrfToken(),
-//             errors,
-//             userId
-//         })
-//     }
-// }));
 router.post('/', requireAuth, commentValidations, asyncHandler(async (req, res) => {
     const { newComment, } = req.body;
     console.log(newComment);

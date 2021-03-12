@@ -11,11 +11,12 @@ block content
             span=title
             div(id='questionDiv')=question.body
               if (userId === question.userId)
-                button(class="edit-question" value=question.id) Edit My Question
+                button(class="edit-question" value=question.id) Edit Question
                 button(class="delete-button" value=question.id) Delete Question
               each comment in comments
                 div(name='comments' id='comment')=comment.body
                   if (userId === comment.userId)
+                    button(class="commentEditButton" value=comment.id) Edit Comment
                     button(class="commentDeleteButton" value=comment.id) Delete Comment
           form(id=question.id name='form')
               //-input(name='_csrf' type='hidden' value=csrfToken)
