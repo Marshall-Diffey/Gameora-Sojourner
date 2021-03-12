@@ -2,7 +2,7 @@ doctype html
 html
   block head
     title=title
-    link(rel='stylesheet' href='/stylesheets/reset.css')
+    link(rel='stylesheet' href='/stylesheets/layout.css')
     script(src="/javascripts/index.js" type="module")
   body
     nav#navbar
@@ -23,5 +23,11 @@ html
             a(href="/users/register") Register
           form(action='/users/logindemo' method='post')
             button(type='submit' class="demo-button") Demo User
+  div(class='home-container')
+        a(href='/')
+            img(src='/images/logo.png' class="game-ora-pic")
+  span(class="topic-container")
+    each topic in topics
+      a(href=`/topics/${topic.id}` class="topic-buttons")=topic.type
 
   block content
