@@ -54,10 +54,15 @@ h1 {
   height: 25px;
   margin-top: 10px;
 }
-.navButton {
-  height: 25px;
-  border-radius: 10%;
-}
+/* .navButton {
+  height: 16px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+} */
 .left-navBar {
   display: flex;
   align-items: center;
@@ -70,12 +75,11 @@ h1 {
 }
 
 .create-question {
-  font-size: 12px;
+  font-size: 10px;
   padding: 5px;
 }
-.navButton{
-  display: flex;
-  align-items: center;
+.create-question:hover {
+  text-decoration: none;
 }
 
 button {
@@ -85,8 +89,8 @@ button {
   box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
     -9px -9px 16px rgba(255, 255, 255, 0.5);
   color: #4d3252;
-  font-size: 12px;
-  height: 24px;
+  font-size: 10px;
+  height: 16px;
   margin-top: 10px;
   margin-bottom: 10px;
   margin-right: 10px;
@@ -96,7 +100,7 @@ button {
   width: 150px;
 }
 
-a:after {
+.shimmer-btn:after {
   content: "";
   position: absolute;
   top: 0;
@@ -127,7 +131,47 @@ a:after {
   text-decoration-color: lightgray;
 } */
 
-a:hover:after {
+.shimmer-btn:hover:after {
+  text-decoration: none;
+  border-radius: 10px;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  transform: translateX(0);
+  transition-property: transform, opacity;
+  transition-duration: 0.7s, 0.15s;
+  transition-timing-function: ease-in-out;
+  text-decoration-color: lightgray;
+}
+.shimmer-btn {
+  font-size: 10px;
+}
+
+.demo-button {
+  font-size: 10px;
+  font-family: Segoe UI;
+  text-decoration: underline;
+}
+.demo-button:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  opacity: 0;
+  transform: translateX(-100%);
+
+  background: rgba(255, 255, 255, 0.13);
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.13) 0%,
+    rgba(255, 255, 255, 0.13) 77%,
+    rgba(255, 255, 255, 0.5) 92%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+}
+.demo-button:hover:after {
   text-decoration: none;
   border-radius: 10px;
   opacity: 1;
@@ -140,26 +184,15 @@ a:hover:after {
   text-decoration-color: lightgray;
 }
 
-.demo-button {
-  font-size: 17px;
-  font-family: Segoe UI;
-  text-decoration: underline;
-}
-.demo-button:hover {
-  text-decoration: none;
-  background-color: rgba(255, 0, 0, 0.2);
-  border-radius: 10px;
-}
-
-.fps{
-  color:rgb(142, 142, 142);
+.fps {
+  color: rgb(142, 142, 142);
   font-size: 12px;
   font-family: Segoe UI;
   padding-left: 12px;
 }
 
-.ping{
-   color:rgb(142, 142, 142);
+.ping {
+  color: rgb(142, 142, 142);
   font-size: 12px;
   font-family: Segoe UI;
   padding-left: 12px;
