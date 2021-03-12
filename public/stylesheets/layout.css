@@ -73,6 +73,10 @@ h1 {
   font-size: 12px;
   padding: 5px;
 }
+.navButton{
+  display: flex;
+  align-items: center;
+}
 
 button {
   background-color: #e0e5ec;
@@ -145,4 +149,18 @@ a:hover:after {
   text-decoration: none;
   background-color: rgba(255, 0, 0, 0.2);
   border-radius: 10px;
+}
+
+.fps{
+  color:rgb(142, 142, 142);
+  font-size: 12px;
+  font-family: Segoe UI;
+  padding-left: 12px;
+}
+
+.ping{
+   color:rgb(142, 142, 142);
+  font-size: 12px;
+  font-family: Segoe UI;
+  padding-left: 12px;
 }
