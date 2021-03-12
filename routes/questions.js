@@ -105,6 +105,9 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
 router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id, 10);
     const question = await db.Question.findByPk(questionId);
+    await db.Comment.destroy({
+        where: { questionId: questionId }
+    })
     if (question === null) {
         return res.redirect('/');
     }
