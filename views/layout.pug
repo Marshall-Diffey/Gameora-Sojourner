@@ -11,7 +11,7 @@ html
           img#logo(src="/images/logo.png")
       span.right-navBar
         button.navButton
-          a(href='/questions') Create a new question
+          a(class="create-question" href='/questions') Create Question
         if authenticated
           form(action="/users/logout" method="post")
             button.navButton(type="submit") Logout
