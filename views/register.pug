@@ -8,13 +8,12 @@ append head
     script(src="/javascripts/index.js" type="module")
     script(src="/javascripts/homeClick.js" type="module")
 block content
-    include error.pug
       p
         p .
           div(class="register-container")
               div(class="img-container")
                 img(src="/images/logo.png" class="game-ora-pic")
-              
+              include error.pug
               form(action='/users/register' method='post' class="form")
                   input(name='_csrf' type='hidden' value=csrfToken)
                   label(for='userName' class="user-name-label") User Name
@@ -26,7 +25,7 @@ block content
                   label(for='confirmPassword') Confirm Password
                   input(name='confirmPassword' type='password' class="conpassword" required)
                   button(type='submit' class="register") Register
-               
-              p(class="account-exist") Already have an account?    
-              
+
+              p(class="account-exist") Already have an account?
+
                   a(href='/users/login' class="login") Login

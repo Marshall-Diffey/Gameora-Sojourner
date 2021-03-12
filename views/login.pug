@@ -1,26 +1,29 @@
 extends layout
-
+append head
+    title=title
+    link(rel="stylesheet" href="/stylesheets/new-question.css")
+    link(rel="stylesheet" href="/stylesheets/login.css")
+    script(src="/javascripts/index.js" type="module")
+    script(src="/javascripts/homeClick.js" type="module")
 block content
-    
-        div(class="login")
-            img(src='/images/logo.png' class='logo')
-            div(class='login-container')
-                if needLogin
-                    p You need to be logged in to access certain functionalities
-                span
-                    a(href='/') 🏠
-                include error.pug
+    p
+        p .
+            div(class="login")
+                img(src='/images/logo.png' class='logo')
+                div(class='login-container')
+                    if needLogin
+                        p You need to be logged in to access certain functionalities
 
-                form(action='/users/login' method='post')
+                    include error.pug
 
-                    input(name='_csrf' type='hidden' value=csrfToken)
-                    label(for='email') Email
-                    input(name='email' type='text' required)
-                    label(for='password') Password
-                    input(name='password' type='password' required)
-                    button(type='submit') Login
+                    form(action='/users/login' method='post' class='form')
 
-                p(class='p-register') If you do not have an account click the button below to register
+                        input(name='_csrf' type='hidden' value=csrfToken)
+                        label(for='email') Email
+                        input(name='email' type='text' required)
+                        label(for='password') Password
+                        input(name='password' type='password' required)
+                        button(type='submit') Login
 
-                a(href='/users/register')
-                    img(src="/images/controler.jpg" class='controler')
+                    p(class='p-register') Need to create an account?
+                        a(href='/users/register' class="register") Register
