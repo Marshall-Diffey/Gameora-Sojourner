@@ -3,7 +3,6 @@ const router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils')
 const db = require('../db/models')
 const { validationResult, check } = require('express-validator')
-const registrationsValidations = require('./registerValidations')
 const { requireAuth } = require('../auth')
 
 // this route displays a new question form that users can fill out to submit and create a new question
@@ -26,16 +25,6 @@ const questionValidations = [
     check('body')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a value for the question')
-    // check('topics')
-    //   .custom(async(value) => {
-    //       const realTopic = await db.Topic.findByPk(value)
-    //       if (!realTopic) {
-    //           throw new Error('Quit trolling, mate');
-    //       }
-    //       return true;
-    //   })
-
-
 ];
 
 // route below this line was causing unhandled promise error
@@ -75,23 +64,19 @@ router.post('/', csrfProtection, requireAuth, questionValidations, asyncHandler(
         })
     }
 }));
+
 // this route should display a specific question and its comments when a question is clicked
 router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
-    console.log('---testlog')
     const questionId = parseInt(req.params.id, 10);
-    const question = await db.Question.findByPk(questionId); //{include: ['userId', 'topicId']}
+    const question = await db.Question.findByPk(questionId);
     const comments = await db.Comment.findAll({ where: { questionId } })
 
-
-    //console.log(question);
     if (question === null) {
-        //const error = new Error(''); possibly res.send an error instead of redirecting
-        console.log(';lkajsdf')
         return res.redirect('/'); // would like to send error message or error in pug file in case of question being deleted mid get request
     }
     const { title } = question;
     if (req.session.auth) {
-        var { userId } = req.session.auth //USING VAR BRO
+        var { userId } = req.session.auth // using var to scope variable to function so that res.render has access to it
     }
     return res.render('question', {
         title,
@@ -102,6 +87,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     })
 }))
 
+// this route deletes specific questions and the related comments
 router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id, 10);
     const question = await db.Question.findByPk(questionId);
@@ -116,6 +102,7 @@ router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     }).end()
 }))
 
+// this route displays a specific question
 router.get('/edit/:id(\\d+)', asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id, 10)
     const question = await db.Question.findByPk(questionId)
@@ -123,23 +110,17 @@ router.get('/edit/:id(\\d+)', asyncHandler(async (req, res) => {
     res.json(question)
 
 }))
+
+// this route edits a specific question
 router.post('/:id(\\d+)/edit', asyncHandler(async (req, res) => {
-    console.log('in the backend ')
     const { finalTitle, finalQuestion, questionId } = req.body
     const question = await db.Question.findByPk(questionId)
-
     const updatedQuestion = question.update({
         title: finalTitle,
         body: finalQuestion
     })
     question.save()
-
     res.json(updatedQuestion)
-
-
 }))
-
-// router.delete('/:id',)
-// router.put('/:id',) bonus route if we have time to implement question editing
 
 module.exports = router;
