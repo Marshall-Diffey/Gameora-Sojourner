@@ -92,7 +92,7 @@ button {
   width: 150px;
 }
 
-button:after {
+/* button:after {
   content: "";
   position: absolute;
   top: 0;
@@ -112,7 +112,7 @@ button:after {
   );
 }
 
-button:hover:after {
+/* button:hover:after {
   opacity: 1;
   top: 0;
   left: 0;
@@ -121,13 +121,13 @@ button:hover:after {
   transition-duration: 0.7s, 0.15s;
   transition-timing-function: ease-in-out;
   text-decoration-color: lightgray;
-}
+} */
 
-a:hover {
+/* a:hover {
   text-decoration: none;
   background-color: rgba(255, 0, 0, 0.2);
   border-radius: 10px;
-}
+} */
 
 .demo-button {
   font-size: 17px;
