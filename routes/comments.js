@@ -21,18 +21,10 @@ router.get('/auth', asyncHandler(async(req, res) => {
 
 router.post('/', requireAuth, commentValidations, asyncHandler(async (req, res) => {
     const { newComment, } = req.body;
-    console.log(newComment);
     const { userId } = req.session.auth;
-    console.log('what is this??', userId);
     const questionId = parseInt(req.body.questionId, 10)
-    // console.log('this is a string 123')
-    // console.log('this is not a string', 123)
-    console.log('what is this??', questionId);
     const question = await db.Question.findByPk(questionId);
     const comments = await db.Comment.findAll({ where: { questionId } });
-
-    //console.log(newComment);
-    //console.log(questionId);
 
     const comment = db.Comment.build({
         body: newComment,
@@ -42,11 +34,8 @@ router.post('/', requireAuth, commentValidations, asyncHandler(async (req, res) 
     const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {
-
         await comment.save();
         res.json({ comment })
-        // return req.session.save(() => {
-        // })
     } else {
         const topics = await db.Topic.findAll();
         const errors = validatorErrors.array().map(error => error.msg)
@@ -61,12 +50,6 @@ router.post('/', requireAuth, commentValidations, asyncHandler(async (req, res) 
     }
 }));
 
-
-
-
-
-
-// going to edit this route to delete comments, not questions
 router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     const commentId = parseInt(req.params.id, 10);
     const comment = await db.Comment.findByPk(commentId);
@@ -76,7 +59,5 @@ router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     return await comment.destroy({})
 }))
 
-// router.delete('/:id',)
-// router.put('/:id',) bonus route if we have time to implement question editing
 
 module.exports = router;
