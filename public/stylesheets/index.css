@@ -10,6 +10,7 @@ background-image: url("/images/wallhaven-0p9m1p.jpg");
 background-repeat: repeat;
 z-index: -1;
 background-size: contain;
+background-attachment: fixed;
 
     
 }
@@ -61,7 +62,7 @@ background-size: contain;
     text-align: center;
     color: rgb(152, 142, 142);
     font-family: Segoe UI;
-    cursor: pointer;
+    
 } 
 .jebhadtodoit:hover {
  border-radius: 10px;
