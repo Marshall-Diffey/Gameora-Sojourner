@@ -121,6 +121,7 @@ button:hover:after {
   transition-duration: 0.7s, 0.15s;
   transition-timing-function: ease-in-out;
   text-decoration-color: lightgray;
+}
 
 a:hover {
   text-decoration: none;
