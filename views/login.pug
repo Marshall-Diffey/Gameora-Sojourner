@@ -12,7 +12,7 @@ block content
                 img(src='/images/logo.png' class='logo')
                 div(class='login-container')
                     if needLogin
-                        p You need to be logged in to access certain functionalities
+                        p(class='authLoginWarning') You need to be logged in to access certain functionalities
 
                     include error.pug
 
