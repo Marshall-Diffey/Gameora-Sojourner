@@ -82,8 +82,10 @@ body {
   background-color: rgba(121, 120, 120, 0.3);
 }
 
-.topic-container {
+.topic-buttons:hover {
   text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
 }
 
 /* a:hover {
