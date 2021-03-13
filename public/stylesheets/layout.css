@@ -83,7 +83,7 @@ h1 {
 }
 
 button {
-  background-color: #e0e5ec;
+  background-color: rgba(255, 255, 255, 0.5);
   border: none;
   border-radius: 6px;
   box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
