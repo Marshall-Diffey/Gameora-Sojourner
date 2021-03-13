@@ -25,7 +25,7 @@ block content
                     if (userId === comment.userId)
                       button(class="commentEditButton" value=comment.id) Edit Comment
                       button(class="commentDeleteButton" value=comment.id) Delete Comment
-          form(id=question.id name='form')
+          form(id=question.id name='form' class="questionForm")
               //-input(name='_csrf' type='hidden' value=csrfToken)
               input(name='questionId' type='hidden' value=question.id)
               textarea(id='newComment' name='newComment' placeholder='Add comment here')

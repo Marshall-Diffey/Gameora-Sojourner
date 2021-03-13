@@ -8,10 +8,10 @@ z-index: -1;
 background-size: contain;
 background-attachment: fixed;
 
-    
+
 }
 .img-container{
-  
+
    margin: -1px 0px -40px 0px;
 }
 .game-ora-pic{
@@ -52,30 +52,30 @@ background-attachment: fixed;
     text-align: center;
     color: rgb(152, 142, 142);
     font-family: Segoe UI;
-    
-} 
+
+}
 .jebhadtodoit:hover {
  border-radius: 10px;
 }
 
 .question-label {
-    
+
     color: rgb(187, 187, 187);
     font-style: italic;
     border-radius: 10px;
     font-family: Segoe UI;
     font-size: 21px;
-    
+
 }
 .topic-container{
-    
+
     color:rgb(0, 0, 0);
     display: flex;
     flex-direction: row;
     align-items:initial;
     justify-content: space-around;
     font-family: Segoe UI;
-  
+
     background-color: rgba(121, 120, 120, 0.3);
 
 
@@ -85,6 +85,25 @@ background-attachment: fixed;
     text-decoration: none;
 }
 
+#newComment {
+    width: 500px;
+    height: 150px;
+}
 /* a:hover {
  text-decoration: underline;
 }   */
+.questionForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.addCommentButton {
+    margin-left: 170px;
+}
+
+#body-div {
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+    margin-left: 300px;
+}
