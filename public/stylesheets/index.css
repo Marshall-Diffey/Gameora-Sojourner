@@ -33,9 +33,14 @@ body {
 .page-container {
   display: flex;
   flex-direction: row;
-  margin-left: 300px;
+  justify-content: center;
+  /* margin-left: 300px; */
 }
-
+.question-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .single-question-container:hover {
   cursor: pointer;
   font-size: 18px;
@@ -46,10 +51,10 @@ body {
 .single-question-container {
   display: flex;
   justify-content: space-between;
+  align-content: center;
   flex-direction: column;
   border: 1px rosybrown;
   width: 500px;
-  margin-right: 300px;
   margin-bottom: 20px;
   margin-top: 20px;
   border-radius: 5px;

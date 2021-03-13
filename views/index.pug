@@ -16,11 +16,8 @@ block content
       each topic in topics
         a(href=`/topics/${topic.id}` class="topic-buttons")=topic.type
   div(class="page-container")
-    span(class="placeholder")
-     
     div(class="question-container" name="question-container")
       each question in questions
         div( class="single-question-container")
           label(for="question" class="question-label" value=question.id id=question.id) Question: #{question.title}
           div(name="question" id=question.id class="jebhadtodoit" value=question.id)= question.body
-    
