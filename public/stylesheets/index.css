@@ -33,6 +33,7 @@ body {
 .page-container {
   display: flex;
   flex-direction: row;
+  margin-left: 300px;
 }
 
 .single-question-container:hover {
