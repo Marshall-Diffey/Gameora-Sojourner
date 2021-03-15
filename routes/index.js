@@ -11,12 +11,14 @@ const loginUser = require('../auth')
 
 /* GET home page. */
 router.get('/', asyncHandler(async (req, res, next) => {
+
   const questions = await db.Question.findAll({
     limit: 15,
     order: [
       ['id', 'DESC']
     ]
   }).map(question => question.dataValues)
+
   const topics = await db.Topic.findAll({}).map(topic => topic.dataValues)
 
 

@@ -15,16 +15,18 @@ block content
       div(id='comment-div')
           div
             include error.pug
-            span(class="question-label")=title
+            label(for='question' class='question-label') Question:
+            div(name='question' class="question-label" class="single-question-container")=title
             div(id='questionDiv' class='single-question-container')=question.body
               if (userId === question.userId)
                 button(class="edit-question" value=question.id) Edit Question
                 button(class="delete-button" value=question.id) Delete Question
-              each comment in comments
-                  div(name='comments' id='comment' class='single-question-container')=comment.body
-                    if (userId === comment.userId)
-                      button(class="commentEditButton" value=comment.id) Edit Comment
-                      button(class="commentDeleteButton" value=comment.id) Delete Comment
+            label(id='commentLabel' for="comments" class='question-label') Comments: 
+          each comment in comments
+            div(name='comments' id='comment' class='single-question-container')=comment.body
+              if (userId === comment.userId)
+                button(class="commentEditButton" value=comment.id) Edit Comment
+                button(class="commentDeleteButton" value=comment.id) Delete Comment
           form(id=question.id name='form' class="questionForm")
               //-input(name='_csrf' type='hidden' value=csrfToken)
               input(name='questionId' type='hidden' value=question.id)

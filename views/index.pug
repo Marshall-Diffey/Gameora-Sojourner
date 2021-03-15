@@ -19,5 +19,5 @@ block content
     div(class="question-container" name="question-container")
       each question in questions
         div( class="single-question-container")
-          label(for="question" class="question-label" value=question.id id=question.id) Question: #{question.title}
+          label(for="question" class="question-label" value=question.id id=question.id) #{question.title}
           div(name="question" id=question.id class="jebhadtodoit" value=question.id)= question.body

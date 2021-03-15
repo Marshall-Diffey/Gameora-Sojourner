@@ -14,6 +14,18 @@ if (owned.value === 'true') {
 }
 let commentDeleteButtons = document.querySelectorAll('.commentDeleteButton');
 const comment = document.getElementById('comment-div');
+let lastComment;
+const getAllComments = () => {
+
+    let allComments = document.getElementsByName('comments')
+    if (allComments.length === 0) {
+        lastComment = document.getElementById('commentLabel')
+    } else {
+        lastComment = allComments[allComments.length - 1]
+    }
+    console.log(lastComment)
+}
+getAllComments();
 
 const questionId = document.getElementsByName('questionId');
 const questionsDiv = document.getElementById('questionDiv');
@@ -27,7 +39,14 @@ const bodyDiv = document.getElementById('body-div')
 
 addCommentButton.addEventListener('click', async (event) => {
     event.preventDefault();
+    let parentOfClick;
+    if (event.target.parentElement) {
 
+        parentOfClick = event.target.parentElement
+    } else {
+        parentOfClick = event.target
+    }
+    console.log(parentOfClick)
     const body = {
         newComment: newComment.value,
         questionId: questionId[0].value
@@ -50,8 +69,10 @@ addCommentButton.addEventListener('click', async (event) => {
         const newCommentDiv = document.createElement('div');
         newCommentDiv.setAttribute('name', 'comments');
         newCommentDiv.setAttribute('id', 'comment');
+        newCommentDiv.classList.add('single-question-container')
         newCommentDiv.innerText = res.comment.body;
-        questionDiv.appendChild(newCommentDiv);
+        getAllComments();
+        lastComment.appendChild(newCommentDiv);
         let editCommentButton = document.createElement('button')
         editCommentButton.setAttribute('class', 'commentEditButton');
         editCommentButton.value = res.comment.id;
@@ -115,7 +136,8 @@ if (owned.value === 'true') {
         console.log(res)
         bodyDiv.innerHTML = ''
         const newDiv = document.createElement('div')
-        newDiv.setAttribute('class', 'edit-header')
+        newDiv.classList.add('questionForm')
+        newDiv.classList.add('question-label')
         newDiv.innerText = 'Edit Your Question:'
         bodyDiv.appendChild(newDiv)
         const newTitle = document.createElement('input')
@@ -165,7 +187,8 @@ const editCommentListener = (editCommentButton) => {
         console.log(res)
         bodyDiv.innerHTML = ''
         const newDiv = document.createElement('div')
-        newDiv.setAttribute('class', 'edit-header')
+        newDiv.classList.add('questionForm')
+        newDiv.classList.add('question-label')
         newDiv.innerText = 'Edit Your Comment:'
         bodyDiv.appendChild(newDiv)
         const editedComment = document.createElement('textarea')
