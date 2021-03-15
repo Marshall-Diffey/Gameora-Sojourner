@@ -69,7 +69,11 @@ router.post('/', csrfProtection, requireAuth, questionValidations, asyncHandler(
 router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id, 10);
     const question = await db.Question.findByPk(questionId);
-    const comments = await db.Comment.findAll({ where: { questionId } })
+    const comments = await db.Comment.findAll({
+        where: { questionId }, order: [
+            ['createdAt', 'asc']
+        ]
+    })
     if (question === null) {
         return res.redirect('/'); // would like to send error message or error in pug file in case of question being deleted mid get request
     }
