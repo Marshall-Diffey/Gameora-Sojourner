@@ -1,6 +1,11 @@
 const deleteButtons = document.querySelectorAll('.delete-button');
 const questionId = document.getElementsByName('questionId');
 const questionsDiv = document.getElementById('questionDiv');
+// const searchInput = document.getElementById('search');
+
+// searchInput.addEventListener('keyup', async (event) => {
+//     console.log(event.target.value);
+// })
 
 deleteButtons.forEach((button) => button.addEventListener('click', async (event) => {
 

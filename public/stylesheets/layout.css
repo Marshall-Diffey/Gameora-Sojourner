@@ -197,3 +197,14 @@ button {
   font-family: Segoe UI;
   padding-left: 12px;
 }
+
+.middle-search {
+  display: flex;
+  align-items: center;
+  /* margin-right: 5px; */
+}
+
+#search-form {
+  display: flex;
+  flex-direction: row;
+}

@@ -96,3 +96,8 @@ body {
 /* a:hover {
  text-decoration: underline;
 }   */
+
+.no-search-results-message {
+  margin: 10px;
+  color: white;
+}
