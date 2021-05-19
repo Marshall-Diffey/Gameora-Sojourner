@@ -34,6 +34,9 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  
+  margin-bottom:100px;
+  
   /* margin-left: 300px; */
 }
 .question-container {
@@ -100,4 +103,29 @@ body {
 .no-search-results-message {
   margin: 10px;
   color: white;
+}
+.footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color:rgb(187, 187, 187);
+}
+.footer-item {
+  display: flex;
+  flex-direction:row;
+  border-radius: 100px;
+  height:100px;
+
+}
+.footer-text {
+  padding-top: 10px;
+padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  
+  width: 150px;
 }
