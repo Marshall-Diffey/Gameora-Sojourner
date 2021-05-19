@@ -11,6 +11,11 @@ html
         a.navButton(class="shimmer-btn" href='/')
           img#logo(src="/images/logo.png")
       //- div(class="fps" id="fps") fps:#{num}
+      span.middle-search
+        form(class='search-form' action='/search' method='post')
+          input(type='text'  id='search' name='search' placeholder='Search...')
+          button(type='submit') Search
+
       span.right-navBar
         button.navButton
           a(class="create-question shimmer-btn" href='/questions') Create Question

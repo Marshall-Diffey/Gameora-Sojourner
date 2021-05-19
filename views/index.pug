@@ -17,7 +17,15 @@ block content
         a(href=`/topics/${topic.id}` class="topic-buttons")=topic.type
   div(class="page-container")
     div(class="question-container" name="question-container")
-      each question in questions
-        div( class="single-question-container")
-          label(for="question" class="question-label" value=question.id id=question.id) #{question.title}
-          div(name="question" id=question.id class="jebhadtodoit" value=question.id)= question.body
+      if !searchResults
+        each question in questions
+          div(class="single-question-container")
+            label(for="question" class="question-label" value=question.id id=question.id) #{question.title}
+            div(name="question" id=question.id class="jebhadtodoit" value=question.id)= question.body
+      else if searchResults.length
+        each question in searchResults
+          div(class="single-question-container")
+            label(for="question" class="question-label" value=question.id id=question.id) #{question.title}
+            div(name="question" id=question.id class="jebhadtodoit" value=question.id)= question.body
+      else
+        div.no-search-results-message No results were found for the search input
