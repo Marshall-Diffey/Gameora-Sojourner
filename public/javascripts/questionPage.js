@@ -39,14 +39,15 @@ const bodyDiv = document.getElementById('body-div')
 
 addCommentButton.addEventListener('click', async (event) => {
     event.preventDefault();
-    let parentOfClick;
-    if (event.target.parentElement) {
+    // let parentOfClick;
+    // console.log('event target', event.target.parentElement)
+    // if (event.target.parentElement) {
 
-        parentOfClick = event.target.parentElement
-    } else {
-        parentOfClick = event.target
-    }
-    console.log(parentOfClick)
+    //     parentOfClick = event.target.parentElement
+    // } else {
+    //     parentOfClick = event.target
+    // }
+    // console.log(parentOfClick)
     const body = {
         newComment: newComment.value,
         questionId: questionId[0].value
@@ -72,7 +73,7 @@ addCommentButton.addEventListener('click', async (event) => {
         newCommentDiv.classList.add('single-question-container')
         newCommentDiv.innerText = res.comment.body;
         getAllComments();
-        lastComment.appendChild(newCommentDiv);
+        lastComment.parentNode.insertBefore(newCommentDiv, lastComment.nextSibling);
         let editCommentButton = document.createElement('button')
         editCommentButton.setAttribute('class', 'commentEditButton');
         editCommentButton.value = res.comment.id;
