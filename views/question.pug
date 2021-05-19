@@ -21,14 +21,15 @@ block content
               if (userId === question.userId)
                 button(class="edit-question" value=question.id) Edit Question
                 button(class="delete-button" value=question.id) Delete Question
-            label(id='commentLabel' for="comments" class='question-label') Comments: 
-          each comment in comments
-            div(name='comments' id='comment' class='single-question-container')=comment.body
-              if (userId === comment.userId)
-                button(class="commentEditButton" value=comment.id) Edit Comment
-                button(class="commentDeleteButton" value=comment.id) Delete Comment
-          form(id=question.id name='form' class="questionForm")
-              //-input(name='_csrf' type='hidden' value=csrfToken)
-              input(name='questionId' type='hidden' value=question.id)
-              textarea(id='newComment' name='newComment' placeholder='Add comment here')
-              button(class="addCommentButton" type='submit' id=question.id) Add Comment
+            label(id='commentLabel' for="comments" class='question-label') Comments:
+          div(class='commanets-area') 
+            each comment in comments
+              div(name='comments' id='comment' class='single-question-container')=comment.body
+                if (userId === comment.userId)
+                  button(class="commentEditButton" value=comment.id) Edit Comment
+                  button(class="commentDeleteButton" value=comment.id) Delete Comment
+            form(id=question.id name='form' class="questionForm")
+                //-input(name='_csrf' type='hidden' value=csrfToken)
+                input(name='questionId' type='hidden' value=question.id)
+                textarea(id='newComment' name='newComment' placeholder='Add comment here')
+                button(class="addCommentButton" type='submit' id=question.id) Add Comment
