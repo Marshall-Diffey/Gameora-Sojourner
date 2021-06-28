@@ -27,7 +27,7 @@ body {
   color: rgb(160, 160, 160);
   width: 250px;
   height: auto;
-  
+
 }
 
 .placeholder {
@@ -38,9 +38,9 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  
+
   margin-bottom:100px;
-  
+
   /* margin-left: 300px; */
 }
 .question-container {
@@ -90,6 +90,8 @@ body {
   justify-content: space-around;
   font-family: Segoe UI;
   padding-top: 32px;
+  padding-left: 10px;
+  padding-right: 10px;
   text-decoration: none;
   background-color: rgba(121, 120, 120, 0.3);
 }
@@ -122,9 +124,9 @@ body {
   height: 32px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   background-image: linear-gradient(to bottom right, rgb(155, 0, 0), rgba(72, 78, 252, 0.8));
-  
+
 }
 .footer-item {
   display: flex;
@@ -137,6 +139,6 @@ body {
 padding-left: 10px;
   display: flex;
   flex-direction: column;
-  
+
   width: 150px;
 }
