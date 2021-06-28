@@ -40,7 +40,8 @@ background-attachment: fixed;
 
 .single-question-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     border: 1px rosybrown;
     width: 500px;
@@ -52,6 +53,7 @@ background-attachment: fixed;
     text-align: center;
     color: rgb(152, 142, 142);
     font-family: Segoe UI;
+    overflow-wrap: break-word;
 
 }
 .jebhadtodoit:hover {
