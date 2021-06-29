@@ -1,7 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
- 
+
 }
 
 a {
@@ -208,4 +208,14 @@ button {
 #search-form {
   display: flex;
   flex-direction: row;
+}
+
+.error {
+  color: white;
+  margin-bottom: 4px;
+}
+
+.errorContainer {
+  max-width: 500px;
+  margin-bottom: 1em;
 }
