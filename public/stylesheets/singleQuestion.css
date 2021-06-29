@@ -51,7 +51,7 @@ background-attachment: fixed;
     border-radius: 5px;
     background-color: rgba(53, 53, 53, 0.7);
     text-align: center;
-    color: rgb(152, 142, 142);
+    color: rgb(240, 240, 240);
     font-family: Segoe UI;
     overflow-wrap: break-word;
 
@@ -62,7 +62,7 @@ background-attachment: fixed;
 
 .question-label {
 
-    color: rgb(187, 187, 187);
+    color: rgb(240, 240, 240);
     font-style: italic;
     border-radius: 10px;
     font-family: Segoe UI;

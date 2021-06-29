@@ -67,7 +67,7 @@ body {
   border-radius: 5px;
   background-color: rgba(53, 53, 53, 0.7);
   text-align: center;
-  color: rgb(152, 142, 142);
+  color: rgb(220, 220, 220);
   font-family: Segoe UI;
 }
 .jebhadtodoit:hover {
@@ -75,7 +75,7 @@ body {
 }
 
 .question-label {
-  color: rgb(187, 187, 187);
+  color: rgb(240, 240, 240);
   font-style: italic;
   border-radius: 10px;
   font-family: Segoe UI;
@@ -142,5 +142,3 @@ padding-left: 10px;
 
   width: 150px;
 }
-
-
