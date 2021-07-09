@@ -51,21 +51,22 @@ body {
 .single-question-container:hover {
   cursor: pointer;
   font-size: 18px;
-  background-color: rgba(94, 94, 94, 0.4);
+  background-color: #C7C7B2;
   border-radius: 10px;
   font-size: 18px;
 }
 .single-question-container {
+  padding: 15px;
   display: flex;
   justify-content: space-between;
   align-content: center;
   flex-direction: column;
-  border: 1px rosybrown;
+  border: 2px solid #b87100;
   width: 500px;
   margin-bottom: 20px;
   margin-top: 20px;
   border-radius: 5px;
-  background-color: rgba(53, 53, 53, 0.7);
+  background-color: rgba(148, 157, 124, 0.9);
   text-align: center;
   color: rgb(220, 220, 220);
   font-family: Segoe UI;
@@ -93,7 +94,7 @@ body {
   padding-left: 10px;
   padding-right: 10px;
   text-decoration: none;
-  background-color: rgba(121, 120, 120, 0.3);
+  background-color: #C7C7B2
 }
 
 .topic-buttons{
@@ -104,6 +105,8 @@ body {
 }
 
 .topic-buttons:hover {
+  padding-left: 3px;
+  padding-right: 3px;
   text-decoration: none;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 6px;
