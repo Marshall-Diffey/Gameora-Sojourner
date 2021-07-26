@@ -54,6 +54,7 @@ background-attachment: fixed;
     color: rgb(240, 240, 240);
     font-family: Segoe UI;
     overflow-wrap: break-word;
+    padding: 4px;
 
 }
 .jebhadtodoit:hover {
@@ -108,4 +109,41 @@ background-attachment: fixed;
     justify-content: center;
     padding-top: 100px;
     margin-left: 300px;
+}
+
+.addCommentButton:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    opacity: 0;
+    transform: translateX(-100%);
+
+    background: rgba(255, 255, 255, 0.13);
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.13) 0%,
+      rgba(255, 255, 255, 0.13) 77%,
+      rgba(255, 255, 255, 0.5) 92%,
+      rgba(255, 255, 255, 0.3) 100%
+    );
+}
+
+.addCommentButton:hover {
+    cursor: pointer;
+}
+
+.addCommentButton:hover:after {
+    text-decoration: none;
+    border-radius: 10px;
+    opacity: 1;
+    top: 0;
+    left: 0;
+    transform: translateX(0);
+    transition-property: transform, opacity;
+    transition-duration: 0.7s, 0.15s;
+    transition-timing-function: ease-in-out;
+    text-decoration-color: lightgray;
 }
