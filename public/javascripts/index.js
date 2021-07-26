@@ -28,6 +28,6 @@ function getRandomArbitrary(min, max) {
   let myNum = Math.random() * (max - min) + min;
   return Math.floor(myNum)
 }
-const num = setInterval(() => fps.innerHTML = 'fps:' + getRandomArbitrary(57, 61), 200)
+const num = setInterval(() => fps.innerHTML = 'fps: ' + getRandomArbitrary(57, 61), 200)
 // fps.innerHTML = getRandomArbitrary(50, 60)
-const pings = setInterval(() => ping.innerHTML = 'ping:' + getRandomArbitrary(10, 40) + ' ms', 900)
+const pings = setInterval(() => ping.innerHTML = 'ping: ' + getRandomArbitrary(10, 40) + ' ms', 900)

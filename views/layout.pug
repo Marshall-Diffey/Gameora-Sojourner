@@ -15,7 +15,7 @@ html
       span.middle-search
         form(class='search-form' action='/search' method='post')
           input(type='text'  id='search' name='search' placeholder='Search...')
-          button(type='submit') Search
+          button(type='submit' class='search-submit') Search
 
       span.right-navBar
         button.navButton
@@ -31,6 +31,6 @@ html
             a(href="/users/register" class="shimmer-btn") Register
           form(action='/users/logindemo' method='post')
             button(type='submit' class="demo-button") Demo User
-        div(class="fps" id="fps") fps:22
-        div(class="ping" id="ping") ping:20 ms
+        div(class="fps" id="fps") fps: 22
+        div(class="ping" id="ping") ping: 20 ms
   block content
