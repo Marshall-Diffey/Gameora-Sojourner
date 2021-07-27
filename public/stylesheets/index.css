@@ -102,6 +102,7 @@ body {
   text-decoration: none;
   font-weight: bold;
   font-family: monospace;
+  margin: 2px 0px; 
 }
 
 .topic-buttons:hover {
