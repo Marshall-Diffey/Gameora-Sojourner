@@ -274,3 +274,7 @@ button {
 #fps, #ping {
   color: black;
 }
+
+@media screen and (max-width: 1259px) {
+  
+}
