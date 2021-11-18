@@ -141,6 +141,15 @@ body {
   padding: 4px;
 }
 
+.footer-portfolio-link {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-portfolio-link-text {
+  color: white;
+}
+
 .footer-text {
   padding-top: 14px;
   padding-left: 10px;
