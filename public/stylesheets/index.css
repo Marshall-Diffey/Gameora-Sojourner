@@ -78,29 +78,6 @@ body {
   border-radius: 10px;
 }
 
-/* .single-question-container:hover {
-  cursor: pointer;
-  font-size: 18px;
-  background-color: #C7C7B2;
-  border-radius: 10px;
-  font-size: 18px;
-}
-.single-question-container {
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  flex-direction: column;
-  border: 2px solid #b87100;
-  width: 500px;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  border-radius: 5px;
-  background-color: rgba(148, 157, 124, 0.9);
-  text-align: center;
-  color: rgb(220, 220, 220);
-  font-family: Segoe UI;
-} */
 .jebhadtodoit:hover {
   border-radius: 10px;
 }
@@ -169,6 +146,15 @@ body {
 
 .footer-img {
   padding: 4px;
+}
+
+.footer-portfolio-link {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-portfolio-link-text {
+  color: white;
 }
 
 .footer-text {
