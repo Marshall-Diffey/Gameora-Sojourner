@@ -78,6 +78,10 @@ body {
   border-radius: 10px;
 }
 
+.single-question-container:hover label {
+  color: rgb(75, 75, 75);
+}
+
 .jebhadtodoit:hover {
   border-radius: 10px;
 }
